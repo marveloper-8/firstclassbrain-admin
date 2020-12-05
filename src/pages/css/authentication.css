@@ -1,0 +1,94 @@
+.authentication{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+}
+.authentication .image{
+    background:teal;
+}
+.authentication form{
+    padding:20vh 5vw;
+}
+.authentication .title{
+    font-size:2vw;
+    margin-bottom:3vh;
+}
+.authentication .teal-background{
+    color:teal;
+}
+.authentication input{
+    display:block;
+    margin-top:4vh;
+    width:80%;
+    padding:2vh 1vw;
+    font-size:.9vw;
+    border:none;
+    border-bottom:1px #bbb solid;
+    outline:none;
+    transition:.5s ease-in-out all;
+}
+.authentication input:focus{
+    border-bottom:1px #000 solid;
+    transition:.5s ease-in-out all;
+}
+.authentication .extra{
+    font-size:.85vw;
+    color:teal;
+    padding-top:2vh;
+}
+
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+
+/* mobile version */
+@media screen and (max-width:600px){
+    .desktop{
+        display:none;
+    }
+    .authentication{
+        display:grid;
+        grid-template-columns:1fr;
+        position:fixed;
+        top:0;
+        left:0;
+        width:100vw;
+        height:100vh;
+    }
+    .authentication form{
+        padding:10vh 7.5vw;
+    }
+    .authentication .title{
+        font-size:6vw;
+        margin-bottom:3vh;
+    }
+    .authentication .teal{
+        color:teal;
+    }
+    .authentication input{
+        display:block;
+        margin-top:2vh;
+        width:78vw;
+        padding:1vh 3vw;
+        font-size:2.5vw;
+        border:none;
+        border-bottom:1px #bbb solid;
+        outline:none;
+        transition:.5s ease-in-out all;
+    }
+    .authentication input:focus{
+        border-bottom:1px #000 solid;
+        transition:.5s ease-in-out all;
+    }
+    .authentication .extra{
+        font-size:2.5vw;
+        color:teal;
+        padding-top:6vh;
+    }
+}

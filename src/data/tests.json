@@ -1,0 +1,18 @@
+[
+    {
+        "test": 1,
+        "name": "Assignment"
+    },
+    {
+        "test": 2,
+        "name": "Weekly Assessment"
+    },
+    {
+        "test": 3,
+        "name": "Mid Term Test"
+    },
+    {
+        "test": 4,
+        "name": "Examination"
+    }
+]

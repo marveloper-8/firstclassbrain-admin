@@ -1,0 +1,2242 @@
+.App{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    /* overflow-x:hidden; */
+    height:auto;
+}
+.link{
+    text-decoration:none;
+    cursor:pointer;
+}
+button, select{
+    outline:none;
+    cursor:pointer;
+}
+input,
+textarea{
+    outline:none;
+    border:none!important;
+    height:auto!important;
+    outline:none!important;
+}
+.disappear{
+    display:none;
+}
+.mobile{
+    display:none;
+}
+
+
+.main-content{
+    width:88vw;
+    position:absolute;
+    top:0;
+    right:0;
+    min-height:100vh;
+    transition: margin-left .5s;
+    padding-bottom:15vh;
+}
+.main-content .content{
+    margin-bottom:10vh;
+    padding:0 5vw;
+}
+.main-content .content .head{
+    font-size:1.5vw;
+    color:grey;
+    font-weight:bold;
+    margin-bottom:1.5vh;
+}
+
+.main-content .top-button{
+    width:87.5%;
+    margin:0 auto 4vh auto;
+}
+.main-content .top-button button{
+    background:teal;
+    color:#fff;
+    border:none;
+    outline:none;
+    font-size:1vw;
+    border-radius:5px;
+    padding:1vh 1vw;
+}
+
+
+.table{
+    width:85%;
+    margin:0 auto 10vh auto;
+    border:1px #707070 solid;
+    padding:0 1vw;
+}
+.table .filter-columns{
+    font-size:.85vw;
+    font-weight:bold;
+    color:#707070;
+    border-bottom:1px #707070 solid;
+    padding:3vh 0;
+}
+.table .filter-columns .tab{
+    padding:0 1vw;
+}
+.table .filter-columns .tab select{
+    margin-left:1vw;
+    padding:1vh .5vw;
+    width:100%;
+    font-size:.85vw;
+}
+.table .filter-columns .filter-button{
+    font-size:.85vw;
+    font-weight:bold;
+    color:#fff;
+    background:teal;
+    border-radius:30px;
+    padding:1vh 0;
+    text-align:center;
+    width:100%;
+    border:none;
+    cursor:pointer;
+}
+.table .filter-columns .search{
+    display:grid;
+    grid-template-columns:3fr 1fr;
+    border:1px #707070 solid;
+    border-radius:30px;
+    padding:1vh 1vw;
+    width:100%;
+    font-size:.85vw;
+}
+.table .filter-columns .search input{
+    background:none;
+    border:none;
+    outline:none;
+}
+.table .filter-columns .search img{
+    width:1vw;
+    margin-left:1vw;
+}
+
+.table .tests-filter-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr!important;
+}
+.table .tests-filter-columns .search{
+    border:1px #707070 solid;
+    border-radius:30px;
+    padding:0vh 1vw!important;
+    width:4vw;
+    height:0!important;
+}
+.table .tests-filter-columns .search input{
+    background:none;
+    border:none;
+    outline:none;
+    height:auto!important;
+    font-size:2.5vw!important;
+}
+
+.table .courses-filter-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr 2fr;
+}
+.table .courses-filter-columns .search{
+    border:1px #707070 solid;
+    border-radius:30px;
+    width:90%;
+    padding:0!important;
+    margin:0!important;
+}
+.table .courses-filter-columns .search input{
+    background:none;
+    border:none;
+    outline:none;
+    padding:0!important;
+    margin:0!important;
+}
+
+.table .columns{
+    padding:3vh 1vw;
+    display:grid;
+    grid-template-columns:.35fr 4fr 1.5fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr;
+    border-top:1px #707070 solid;
+    font-size:.8vw;
+    color:#707070;
+}
+.courses-table .columns{
+    padding:3vh 1vw;
+    display:grid;
+    grid-template-columns:5fr 1.5fr 1fr 1fr 1fr 1fr .5fr .5fr;
+    border-top:1px #707070 solid;
+    font-size:.8vw;
+    color:#707070;
+}
+.table .heading{
+    font-size:.85vw;
+    font-weight:bold;
+    border:none;
+}
+.table .columns .button{
+    text-align:right;
+}
+.table .columns .button button{
+    border:none;
+    outline:none;
+    border-radius:30px;
+    padding:1.25vh 1.5vw;
+    color:#fff;
+    cursor:pointer;
+    font-size:.8vw;
+}
+.table .columns .button img{
+    width:1vw;
+    cursor:pointer;
+}
+
+
+.table-tests{
+    width:85%;
+    margin:0 auto 10vh auto;
+    border:1px #707070 solid;
+    padding:0 1vw;
+}
+.table-tests .filter-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    font-size:1vw;
+    font-weight:bold;
+    color:#707070;
+    border-bottom:1px #707070 solid;
+    padding:3vh 0;
+}
+.table-tests .filter-columns .tab{
+    padding:0 1vw;
+}
+.table-tests .filter-columns .tab select{
+    margin-left:1vw;
+    padding:1vh .5vw;
+    width:100%;
+    font-size:.85vw;
+}
+.table-tests .filter-columns .filter-button{
+    font-size:.85vw;
+    font-weight:bold;
+    color:#fff;
+    background:teal;
+    border-radius:30px;
+    padding:1vh 0;
+    text-align:center;
+    width:100%;
+    border:none;
+    cursor:pointer;
+}
+.table-tests .filter-columns .search{
+    border:1px #707070 solid;
+    border-radius:30px;
+    padding:1vh 1vw;
+    width:100%!important;
+}
+.table-tests .filter-columns .search input{
+    background:none;
+    border:none;
+    width:100%;
+    outline:none;
+    font-size:.85vw;
+}
+
+.table-tests .columns{
+    padding:3vh 1vw;
+    display:grid;
+    grid-template-columns:4fr 1.5fr 1fr 1fr 1.5fr 1fr .5fr .5fr;
+    border-top:1px #707070 solid;
+    font-size:.8vw;
+    color:#707070;
+}
+.table-tests .heading{
+    font-size:.85vw;
+    font-weight:bold;
+    border:none;
+}
+.table-tests .columns .button{
+    text-align:right;
+}
+.table-tests .columns .button button{
+    border:none;
+    outline:none;
+    border-radius:30px;
+    padding:1vh 1vw;
+    color:#fff;
+    cursor:pointer;
+    font-size:.8vw;
+}
+.table-tests .columns .button img{
+    width:1vw;
+    cursor:pointer;
+}
+
+
+.add-test-table .add-test-filter-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    border:none;
+    padding:3vh 0 4vh 0;
+}
+.add-test-table .add-test-filter-columns .tab select{
+    margin-left:1vw;
+    padding:10px!important;
+    width:90%!important;
+    margin-top:10px;
+    border:1px #707070 solid;
+}
+.add-test-table .add-test-filter-columns .tab input{
+    margin-left:1vw;
+    padding:10px!important;
+    width:80%!important;
+    margin-top:10px;
+    border:1px #707070 solid;
+}
+.add-test-table .item{
+    border-top:1px #707070 solid;
+    padding:4vh 3vw 0vh 3vw;
+}
+.add-test-table .item .number{
+    font-size:1.25vw;
+    font-weight:600;
+    color:grey;
+    font-size:.85vw;
+    margin-bottom:2vh;
+}
+.add-test-table .item textarea{
+    width:97%;
+    padding:2vh 1vw;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    border:none;
+    border-radius:7px;
+    height:30vh;
+    font-size:.85vw;
+    margin-bottom:2vh;
+}
+.add-test-table .item .answer-options .tab{
+    display:grid;
+    grid-template-columns:2fr .2fr 10fr;
+    margin-bottom:2vh;
+}
+.add-test-table .item .answer-options .tab .select,
+.add-test-table .item .answer-options .tab .label{
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    padding:2vh 1vw;
+    border-radius:7px;
+    font-size:.85vw;
+}
+.add-test-table .item .answer-options .tab .select{
+    color:teal;
+    font-weight:bold;
+    position:relative;
+    padding-left:2vw;
+    cursor:pointer;
+    transition:.25s ease-in-out all;
+}
+.add-test-table .item .answer-options .tab .select .radio{
+    color:teal;
+    background:teal;
+    position:absolute;
+    top:0;
+    left:0;
+    opacity:0;
+    z-index:10000;
+    width:10vw;
+    height:5vh;
+    cursor:pointer;
+    transition:.25s ease-in-out all;
+}
+.add-test-table .item .answer-options .tab .select .text{
+    z-index:100;
+    position:relative;
+}
+.add-test-table .item .answer-options .tab .select .checkmark{
+    width:100%;
+    height:100%;
+    background:#f6f5f5;
+    position:absolute;
+    top:0;
+    left:0;
+    border-radius:7px;
+    transition:.25s ease-in-out all;
+}
+.add-test-table .item .answer-options .tab .select:hover .radio ~ .checkmark{
+    background:rgba(0, 128, 128, 0.292);
+    transition:.25s ease-in-out all;
+}
+.add-test-table .item .answer-options .tab .select .radio:checked ~ .checkmark{
+    background:teal;
+    transition:.25s ease-in-out all;
+}
+.add-test-table .item .answer-options .tab .select .radio:checked ~ .text{
+    color:#fff;
+    transition:.25s ease-in-out all;
+}
+.add-test-table .item .answer-options .tab .label input{
+    width:100%;
+    font-size:.85vw;
+    background:none;
+    outline:none;
+    border:none;
+}
+.add-test-table .item .correction .input{
+    width:100%;
+    margin-bottom:2vh;
+    position:relative;
+    font-size:.85vw;
+}
+.add-test-table .item .correction .input-file{
+    padding:1.5vh 1vw;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    width:97%;
+    outline:none;
+    border:none;
+    font-size:.85vw;
+    border-radius:5px;
+}
+.add-test-table .item .correction input[type=file]{
+    position:absolute;
+    left:0;
+    opacity:0;
+    width:90%;
+    cursor:pointer;
+}
+.add-test-table .item .course-thumbnail{
+    width:100%;
+    border-radius:6px;
+}
+.add-test-table .delete-test-button{
+    background:#f00;
+    color:#fff;
+    padding:1.5vh 2vw;
+    border:none;
+    outline:none;
+    border-radius:7px;
+    font-size:.85vw;
+    margin-bottom:3vh;
+}
+.add-test-table .add-test-button{
+    background:teal;
+    color:#fff;
+    padding:1.5vh 2vw;
+    border:none;
+    outline:none;
+    border-radius:7px;
+    font-size:.85vw;
+    margin-left:3vw;
+}
+.add-test-table .upload-test-button-container{
+    padding:0 3vw 5vh 3vw;
+    border-top:2px teal solid;
+    margin-top:2vh;
+}
+.add-test-table .upload-test-button{
+    background:teal;
+    color:#fff;
+    padding:1.5vh 2vw;
+    width:100%;
+    border:none;
+    outline:none;
+    border-radius:7px;
+    font-size:.85vw;
+}
+
+
+
+.test-questions{
+    padding:0 5vw;
+}
+.test-questions .add-test-filter-columns .tab select{
+    margin-left:1vw;
+    padding:1vh .5vw;
+    width:90%;
+}
+.test-questions button{
+    padding:1vh 1vw;
+    background:teal;
+    color:#fff;
+    font-size:.85vw;
+    border-radius:3px;
+    width:none;
+    outline:none;
+    border:none;
+    margin-bottom:3vh;
+}
+.test-questions .item{
+    border-top:1px #707070 solid;
+    padding:4vh 3vw;
+}
+.test-questions .item li{
+    display:inline-block;
+}
+.test-questions .item .number{
+    font-size:1.25vw;
+    font-weight:600;
+    color:grey;
+    margin-bottom:2vh;
+}
+.test-questions .item .question{
+    width:95%;
+    padding:3vh 1.5vw;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    border:none;
+    border-radius:7px;
+    margin-bottom:2vh;
+    font-size:1vw;
+}
+.test-questions .item .answer-options{
+    font-size:1vw;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+.test-questions .item .answer-options .tab{
+    display:grid;
+    grid-template-columns:1fr 6fr;
+    margin-bottom:2vh;
+    width:97.5%;
+}
+.test-questions .item .answer-options .tab .select,
+.test-questions .item .answer-options .tab .label{
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    padding:2vh 1vw;
+    border-radius:7px;
+}
+.test-questions .item .answer-options .tab .select{
+    color:teal;
+    font-weight:bold;
+    width:95%;
+}
+.test-questions .item .answer-options .tab .label input{
+    width:100%;
+    font-size:1vw;
+    background:none;
+    outline:none;
+    border:none;
+}
+.test-questions .item .answer-options .correct-answer .select{
+    background:teal!important;
+    color:#f6f5f5!important;
+}
+.test-questions .item .correction .correction-answer{
+    width:97.5%;
+    padding:3vh 1.5vw;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    border:none;
+    border-radius:7px;
+    margin-bottom:2vh;
+}
+.test-questions .item .correction .answer{
+    padding:2.5vh 1vw;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    width:97.5%;
+    outline:none;
+    border:none;
+    font-size:1vw;
+    border-radius:5px;
+    margin-bottom:2vh;
+    font-size:1vw;
+}
+.test-questions .item .correction .media{
+    background:grey;
+    width:100%;
+    outline:none;
+    border:none;
+    font-size:1vw;
+    border-radius:5px;
+    height:30vh;
+}
+
+
+.filter-tab{
+    display:grid;
+    grid-template-columns:3fr 3fr 1.5fr 1.5fr;
+    font-size:1.1vw;
+    font-weight:bold;
+    color:#707070;
+    margin:0 auto 4vh auto;
+    padding:3vh 0;
+    width:90%;
+}
+.filter-tab .tab{
+    padding:0 1vw;
+}
+.filter-tab .tab select{
+    margin-left:1vw;
+    padding:1vh .5vw;
+    width:15vw;
+}
+.filter-tab .filter-button{
+    font-size:.85vw;
+    font-weight:bold;
+    color:#fff;
+    background:teal;
+    border-radius:30px;
+    padding:1vh 0;
+    text-align:center;
+    width:80%;
+    border:none;
+    cursor:pointer;
+}
+.filter-tab .search{
+    display:grid;
+    grid-template-columns:3fr 1fr;
+    border:1px #707070 solid;
+    border-radius:30px;
+    padding:1vh 1vw;
+}
+.filter-tab .search input{
+    background:none;
+    border:none;
+    outline:none;
+}
+.filter-tab .search img{
+    width:1vw;
+    margin-left:1vw;
+}
+
+
+.students-data-container {
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    width:85%;
+    margin:0 auto 10vh auto;
+    height:80vh;
+    box-shadow: 0px 0px 10px #00000024;
+    padding:0;
+    background:#ffff;
+}
+.students-data-container .table{
+    overflow-y:scroll;
+    height:100%;
+    border:none;
+    overflow-x:hidden;
+    border-right:1px #707070 solid;
+}
+/* width */
+.students-data-container .table::-webkit-scrollbar {
+    width: 3px;
+    height:7.5px;
+}
+/* Track */
+.students-data-container .table::-webkit-scrollbar-track {
+    background:none;
+}
+/* Handle */
+.students-data-container .table::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
+}
+/* Handle on hover */
+.students-data-container .table::-webkit-scrollbar-thumb:hover {
+    background: #000; 
+}
+.students-data-container .table .filter-columns{
+    display:grid;
+    grid-template-columns:1fr 2fr .5fr;
+}
+.students-data-container .table .filter-columns select{
+    width:10vw;
+    font-size:.85vw;
+}
+.students-data-container .table .filter-columns .search{
+    width:100%;
+    border-bottom:1px #bbb solid;
+    font-size:.85vw;
+}
+.students-data-container .table .columns{
+    padding:3vh 1vw;
+    display:grid;
+    grid-template-columns:1fr 4fr 1.5fr 1.5fr;
+    border-bottom:1px #707070 solid;
+    border-top:none;
+}
+.students-data-container .table .columns .image{
+    width:4vw;
+    height:4vw;
+    border-radius:4vw;
+}
+.students-data-container .table .columns .tab{
+    padding-left:1vw;
+}
+.students-data-container .table .columns .tab .name{
+    font-weight:bold;
+    color:rgb(150, 110, 110);
+    margin-bottom:1vh;
+    font-size:1vw;
+}
+
+.students-data-container .table .columns .tab button{
+    background:teal;
+    padding:.75vh 1vw;
+    outline:none;
+    border:none;
+    font-size:.65vw;
+    color:#fff;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.students-data-container .profile-container{
+    padding:4vh 2.5vw;
+    border-right:1px #707070 solid;
+    text-align:center;
+}
+.students-data-container .profile-container .profile-image{
+    width:10vw;
+    height:10vw;
+    border-radius:10vw;
+    background:grey;
+    margin:0 auto 2vh auto;
+}
+.students-data-container .profile-container .name{
+    font-size:1.25vw;
+    font-weight:bolder;
+    color:teal;
+    margin-bottom:1vh;
+}
+.students-data-container .profile-container .widgets{
+    padding:0vh 5vw;
+    border-top:1px #707070 solid;
+    margin-top:2vh;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    text-align:center;
+}
+.students-data-container .profile-container .text{
+    font-size:1vw;
+}
+.students-data-container .profile-container .widgets div{
+    text-align:center;
+    margin:0!important;
+    padding:0!important;
+}
+.students-data-container .profile-container .widgets img{
+    width:60%;
+    cursor:pointer;
+    margin:0!important;
+    padding:0!important;
+}
+.students-data-container .profile-container .actions{
+    border-top:1px #707070 solid;
+    padding-top:3vh;
+}
+.students-data-container .profile-container .actions button{
+    display:block;
+    padding:1vh 0;
+    border-radius:3px;
+    font-size:.85vw;
+    text-align:center;
+    width:100%;
+    margin-bottom:1vh;
+    color:#fff;
+    outline:none;
+}
+.students-data-container .profile-container .actions button.gift{
+    background:teal;
+    border:2px teal solid;
+    transition:.25s ease-in-out all;
+}
+.students-data-container .profile-container .actions button.delete{
+    background:#f00;
+    border:2px #f00 solid;
+    transition:.25s ease-in-out all;
+}
+.students-data-container .profile-container .actions button.gift:hover{
+    color:teal;
+    background:#fff;
+    transition:.25 ease-in-out all;
+    border:2px teal solid;
+}
+.students-data-container .profile-container .actions button.delete:hover{
+    color:#f00;
+    background:#fff;
+    transition:.25 ease-in-out all;
+    border:2px #f00 solid;
+}
+
+.students-data-container .message-container{
+    text-align:center;
+    padding:4vh 2.5vw;
+}
+.students-data-container .message-container .void{
+    color:#707070;
+    font-size:1.25vw;
+}
+
+
+
+.instructors-data-container {
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    width:92.5%;
+    margin:0 auto 10vh auto;
+    height:80vh;
+    box-shadow: 0px 0px 10px #00000024;
+    padding:0;
+    background:#ffff;
+}
+.instructors-data-container .table{
+    overflow-y:scroll;
+    height:100%;
+    border:none;
+    overflow-x:hidden;
+}
+.instructors-data-container .table .filter-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+.instructors-data-container .table .filter-columns select{
+    width:6.5vw;
+}
+.instructors-data-container .table .filter-columns .search{
+    width:12.5vw;
+    display:grid;
+    float:right;
+    grid-template-columns:0fr;
+}
+.instructors-data-container .table .add-instructors button{
+    background:#fff;
+    border:1.5px teal solid;
+    border-radius:20px;
+    font-size:1vw;
+    padding:1vh 2vw;
+    color:teal;
+    font-weight:bold;
+}
+.instructors-data-container .table .search-container{
+    text-align:right!important;
+}
+.instructors-data-container .table .columns{
+    padding:3vh 1vw;
+    display:grid;
+    grid-template-columns:1fr 4fr 1.5fr 1.5fr;
+    border-bottom:1px #707070 solid;
+    border-top:none;
+}
+.instructors-data-container .table .columns .image{
+    width:4vw;
+    height:4vw;
+    border-radius:4vw;
+}
+.instructors-data-container .table .columns .tab{
+    padding-left:1vw;
+    text-transform:capitalize;
+}
+.instructors-data-container .table .columns .tab .name{
+    font-weight:bold;
+    color:#000;
+    margin-bottom:1vh;
+}
+
+.instructors-data-container .table .columns .view-profile button{
+    background:teal;
+    padding:.75vh .75vw;
+    outline:none;
+    border:none;
+    font-size:.65vw;
+    margin-top:1vh;
+    color:#fff;
+    border-radius:7px;
+    cursor:pointer;
+}
+
+.instructors-data-container .message-container{
+    text-align:center;
+    padding-top:39vh;
+}
+.instructors-data-container .message-container .void{
+    color:#707070;
+    font-size:1.25vw;
+}
+
+
+
+.course-details-content{
+    padding:0vh 5vw;
+}
+.course-details-content .head{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    margin-bottom:2vh;
+}
+.course-details-content .course-thumbnail{
+    width:5vw;
+    height:5vw;
+    border-radius:5vw;
+}
+.course-details-content .course-thumbnail-preview{
+    width:95%;
+    border-radius:6px;
+}
+.course-details-content .head .title{
+    font-size:2vw;
+    display:block;
+    width:none;
+}
+.course-details-content .head .button-container{
+    text-align:right;
+    display:block;
+    width:none;
+    padding-right:3.5vw;
+}
+.course-details-content .head .button-container button{
+    padding:1vh 1vw;
+    background:teal;
+    color:#fff;
+    font-size:.85vw;
+    border-radius:3px;
+    width:none;
+    outline:none;
+    border:none;
+}
+.course-details-content .video{
+    width:95%;
+    height:80vh;
+    background:grey;
+    margin-bottom:0vh;
+}
+.course-details-content .text-picture-container{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+.course-details-content .text-picture-container .tab{
+    width:90%;
+    margin-top:5vh;
+}
+.course-details-content .text-picture-container .tab .image{
+    width:100%;
+    height:35vh;
+    margin-bottom:2vh;
+}
+.course-details-content .text-picture-container .tab .sub-title{
+    font-size:1.5vw;
+    font-weight:bold;
+    color:teal;
+}
+.course-details-content .text-picture-container .tab .text{
+    font-size:1vw;
+    font-weight:500;
+    text-align:justify;
+}
+.course-details-content .pdf{
+    border-top:1px #bbb solid;
+    margin-top:5vh;
+    padding-top:5vh;
+    margin-bottom:5vh;
+    padding-bottom:5vh;
+    display:grid;
+    grid-template-columns:1fr 26fr;
+    font-size:1vw;
+    font-weight:500;
+    color:grey;
+}
+.course-details-content .pdf img{
+    margin-right:1vw;
+    width:2vw;
+}
+
+
+
+.courses-table{
+    text-align:left;
+    width:85%;
+    margin:auto;
+}
+.courses-table .add-courses-filter-columns{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+    padding:2.5vh 0;
+    font-size:.85vw;
+    border-bottom:1px #707070 solid;
+    text-align:center;
+}
+.courses-table .form{
+    padding:3vh 1.5vw;
+}
+.courses-table .form .course-thumbnail{
+    width:100%;
+    border-radius:6px;
+}
+.courses-table .form .input{
+    width:100%;
+    margin-bottom:3vh;
+    position:relative;
+}
+.courses-table .form input[type=text],
+.courses-table .form textarea,
+.courses-table .form .input-file{
+    padding:1.5vh 1vw!important;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    width:97%;
+    outline:none;
+    border:none;
+    font-size:.85vw;
+    border-radius:5px;
+}
+.courses-table .form input[type=file]{
+    position:absolute;
+    left:0;
+    opacity:0;
+    width:90%;
+    cursor:pointer;
+}
+.courses-table .form textarea{
+    height:15vh;
+}
+.courses-table .form .input span{
+    color:grey;
+}
+.courses-table .form .input .upload-button{
+    background:teal;
+    font-size:1vw;
+    text-align:center;
+    width:100%;
+    border:none;
+    color:#fff;
+    border-radius:5px;
+}
+
+
+.course-details-content .input{
+    width:100%;
+    margin-bottom:3vh;
+    position:relative;
+}
+.course-details-content input[type=text],
+.course-details-content textarea,
+.course-details-content .input-file{
+    padding:1.5vh 1vw!important;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    width:97%;
+    outline:none;
+    border:none;
+    font-size:.85vw;
+    border-radius:5px;
+}
+.course-details-content input[type=file]{
+    position:absolute;
+    left:0;
+    opacity:0;
+    width:90%;
+    cursor:pointer;
+}
+
+
+
+.popup-toggle .instructors-inner{
+    background:#fff;
+    min-height:90vh;
+    position:absolute;
+    top:5vh;
+    width:35vw;
+    box-shadow: 0 4px 8px 0 rgba(132, 132, 132, 0.2), 0 6px 20px 0 rgba(177, 177, 177, 0.19);
+    left:32.5vw;
+    margin:0 auto 10vh 0;
+    text-align:left;
+    padding:0 1vw;
+}
+.popup-toggle .instructors-inner .navigation{
+    font-size:1.25vw;
+    border-bottom:1px #707070 solid;
+    color:#707070;
+    font-weight:bold;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+}
+.popup-toggle .instructors-inner .navigation .title{
+    padding:3vh 3vw;
+}
+.popup-toggle .instructors-inner .navigation .close{
+    font-size:2.5vw;
+    text-align:right;
+    padding:.75vh 3vw;
+}
+.popup-toggle .instructors-inner .navigation .close span{
+    cursor:pointer;
+}
+.popup-toggle .instructors-inner .form{
+    padding:3vh 1.5vw;
+}
+.popup-toggle .instructors-inner .form .input{
+    width:100%;
+    margin-bottom:2vh;
+    position:relative;
+    color:#fff!important;
+}
+.popup-toggle .instructors-inner .form input[type=text],
+.popup-toggle .instructors-inner .form input[type=phone],
+.popup-toggle .instructors-inner .form input[type=email],
+.popup-toggle .instructors-inner .form input[type=password],
+.popup-toggle .instructors-inner .form textarea,
+.popup-toggle .instructors-inner .form .input-file{
+    padding:1.5vh 1vw;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    width:94%;
+    outline:none;
+    border:none;
+    font-size:1vw;
+    border-radius:5px;
+    color:#fff!important;
+}
+.popup-toggle .instructors-inner .form input[type=file]{
+    position:absolute;
+    left:0;
+    opacity:0;
+    width:90%;
+    cursor:pointer;
+}
+.popup-toggle .instructors-inner .form textarea{
+    height:15vh;
+}
+.popup-toggle .instructors-inner .form .input span{
+    color:#fff;
+}
+.popup-toggle .instructors-inner .form .input .upload-button{
+    background:teal;
+    font-size:1vw;
+    text-align:center;
+    padding:2vh 0;
+    width:100%;
+    border:none;
+    color:#fff;
+    border-radius:5px;
+}
+
+
+
+.popup-toggle .view-profile-inner{
+    background:#fff;
+    height:90vh;
+    position:absolute;
+    top:5vh;
+    width:25vw;
+    box-shadow: 0 4px 8px 0 rgba(132, 132, 132, 0.2), 0 6px 20px 0 rgba(177, 177, 177, 0.19);
+    left:37.5vw;
+    margin:auto;
+    text-align:left;
+    padding:0 1vw;
+}
+.popup-toggle .view-profile-inner .navigation{
+    font-size:1.25vw;
+    border-bottom:1px #707070 solid;
+    color:#707070;
+    font-weight:bold;
+    display:grid;
+    grid-template-columns:2fr 1fr;
+}
+.popup-toggle .view-profile-inner .navigation .title{
+    padding:3vh 3vw;
+}
+.popup-toggle .view-profile-inner .navigation .close{
+    font-size:2.5vw;
+    text-align:right;
+    padding:.75vh 3vw;
+}
+.popup-toggle .view-profile-inner .navigation .close span{
+    cursor:pointer;
+}
+.popup-toggle .view-profile-inner .data{
+    padding:3vh 1.5vw;
+}
+.popup-toggle .view-profile-inner .data .image{
+    width:10vw;
+    height:10vw;
+    border-radius:10vw;
+    margin:auto;
+}
+.popup-toggle .view-profile-inner .data .name{
+    font-weight:bold;
+    font-size:1.25vw;
+    text-align:center;
+    margin:3vh 0;
+}
+.popup-toggle .view-profile-inner .data .tab{
+    width:100%;
+    margin-bottom:2vh;
+    position:relative;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    font-size:1vw;
+    border-radius:5px;
+    display:grid;
+    grid-template-columns:1fr 7fr;
+    border-radius:5px;
+}
+.popup-toggle .view-profile-inner .data .tab .icon{
+    background:teal;
+    padding:1vh 0;
+    text-align:center;
+    border-radius:5px 0 0 5px;
+}
+.popup-toggle .view-profile-inner .data .tab .icon img{
+    width:40%;
+}
+.popup-toggle .view-profile-inner .data .tab .value{
+    margin-left:1vw;
+    padding:1vh 0vw;
+    font-size:.8vw;
+}
+
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+
+/* mobile version */
+@media screen and (max-width:600px){
+    .desktop-hide{
+        display:none;
+    }
+    .App{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100vw;
+        /* overflow-x:hidden; */
+        height:auto;
+    }
+    .link{
+        text-decoration:none;
+        cursor:pointer;
+    }
+    button, select{
+        outline:none;
+        cursor:pointer;
+    }
+    input,
+    textarea{
+        outline:none;
+        border:none;
+    }
+    .disappear{
+        display:none;
+    }
+    
+    
+    .main-content{
+        width:100vw;
+        position:absolute;
+        top:0;
+        right:0;
+        min-height:100vh;
+        transition: margin-left .5s;
+        padding-bottom:10vh;
+    }
+    .main-content .content{
+        margin-bottom:2.5vh;
+        padding:0 7.5vw;
+    }
+    .main-content .content .head{
+        font-size:5vw;
+        color:grey;
+        font-weight:bold;
+        margin-bottom:1.5vh;
+    }
+    
+    .main-content .top-button{
+        width:87.5%;
+        margin:0 auto 4vh auto;
+    }
+    .main-content .top-button button{
+        background:teal;
+        color:#fff;
+        border:none;
+        outline:none;
+        font-size:2.5vw;
+        border-radius:5px;
+        padding:1vh 1vw;
+        width:100%;
+    }
+    
+    
+    .table{
+        width:100%;
+        margin:0 auto 10vh auto;
+        border:none;
+        padding:0 1vw;
+    }
+    .table .filter-columns{
+        font-size:2.5vw;
+        font-weight:bold;
+        color:#707070;
+        border-bottom:none;
+        padding:3vh 0;
+    }
+    .table .filter-columns .tab{
+        padding:0 1vw;
+    }
+    .table .filter-columns .tab select{
+        margin-bottom:1vh;
+        padding:1vh 1.5vw;
+        width:100%;
+        font-size:2.5vw;
+        border:none;
+        border:1px #707070 solid;
+    }
+    .table .filter-columns .filter-button{
+        font-size:.85vw;
+        font-weight:bold;
+        color:#fff;
+        background:teal;
+        border-radius:30px;
+        padding:1vh 0;
+        text-align:center;
+        width:100%;
+        border:none;
+        cursor:pointer;
+    }
+    .table .filter-columns .search{
+        display:grid;
+        grid-template-columns:3fr 1fr;
+        border:1px #707070 solid;
+        border-radius:30px;
+        padding:1vh 1vw;
+        width:100%;
+        font-size:2.5vw;
+    }
+    .table .filter-columns .search input{
+        background:none;
+        border:none;
+        outline:none;
+    }
+    .table .filter-columns .search img{
+        width:1vw;
+        margin-left:1vw;
+    }
+    
+    .table .tests-filter-columns{
+        display:grid;
+        grid-template-columns:1fr!important;
+    }
+    .table .tests-filter-columns .search{
+        border:none;
+        border-bottom:1px #707070 solid;
+        border-radius:30px;
+        padding:0vh 1vw;
+        width:4vw;
+    }
+    .table .tests-filter-columns .search input{
+        background:none;
+        border:none;
+        outline:none;
+    }
+    
+    .table .courses-filter-columns{
+        display:grid;
+        grid-template-columns:1fr;
+        padding:0 2.5vw;
+    }
+    .table .courses-filter-columns .search{
+        display:grid;
+        grid-template-columns:3fr 1fr;
+        border:none;
+        border-bottom:1px #707070 solid;
+        border-radius:0;
+        padding:1vh 1vw;
+        width:100%;
+    }
+    .table .courses-filter-columns .search input{
+        background:none;
+        border:none;
+        outline:none;
+        font-size:2.5vw;
+    }
+    
+    .table .columns{
+        padding:1vh 1.5vw;
+        display:grid;
+        grid-template-columns:4fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+        border-top:1px #707070 solid;
+        font-size:.8vw;
+        color:#707070;
+    }
+    .courses-table .columns{
+        padding:2vh 1.5vw;
+        display:grid;
+        grid-template-columns:4fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+        border-top:1px #707070 solid;
+        font-size:2.5vw;
+        color:#707070;
+    }
+    .courses-table .columns .columns-icon{
+        height:2vh;
+    }
+    .table .heading{
+        font-size:2.5vw;
+        font-weight:bold;
+        border:none;
+        background:#dadada;
+        margin-top:3vh;
+    }
+    .table .columns .button{
+        text-align:right;
+    }
+    .table .columns .button button{
+        border:none;
+        outline:none;
+        border-radius:30px;
+        padding:1.25vh 1.5vw;
+        color:#fff;
+        cursor:pointer;
+        font-size:.8vw;
+    }
+    .table .columns .button button.view{
+        background:teal;
+    }
+    .table .columns .button button.delete{
+        background:red;
+    }
+    
+    
+    .table-tests{
+        width:85%;
+        margin:0 auto 10vh auto;
+        border:none;
+        padding:0 1vw;
+    }
+    .table-tests .filter-columns{
+        display:grid;
+        grid-template-columns:1fr;
+        font-size:1vw;
+        font-weight:bold;
+        color:#707070;
+        border-bottom:none;
+        padding:0;
+        margin-bottom:0vh;
+    }
+    .table-tests .filter-columns .tab{
+        padding:0 1vw;
+        text-align:center;
+    }
+    .table-tests .filter-columns .tab select{
+        padding:1vh .5vw;
+        margin-bottom:2vh;
+        font-size:2.5vw;
+        width:100%;
+    }
+    .table-tests .filter-columns .filter-button{
+        font-size:.85vw;
+        font-weight:bold;
+        color:#fff;
+        background:teal;
+        border-radius:30px;
+        padding:1vh 0;
+        text-align:center;
+        width:100%;
+        border:none;
+        cursor:pointer;
+    }
+    .table-tests .filter-columns .search{
+        border:1px #707070 solid;
+        border-radius:0px;
+        padding:1vh 1vw;
+        width:100%;
+        display:grid;
+        grid-template-columns:1fr;
+    }
+    .table-tests .filter-columns .search input{
+        background:none;
+        border:none;
+        outline:none;
+        font-size:3vw;
+    }
+    
+    .table-tests .columns{
+        padding:3vh 1vw;
+        display:grid;
+        grid-template-columns:4fr 1.5fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr;
+        border-top:1px #707070 solid;
+        font-size:2.5vw;
+        color:#707070;
+    }
+    .table-tests .heading{
+        font-size:2.5vw;
+        font-weight:bold;
+        border:none;
+        background:#dadada;
+        margin-top:3vh;
+        border:none!important;
+    }
+    .table-tests .columns .columns-icon{
+        height:2vh;
+    }
+    .table-tests .columns .button{
+        text-align:right;
+    }
+    .table-tests .columns .button img{
+        width:3vw;
+        cursor:pointer;
+    }
+    
+    
+    
+    .add-test-table .add-test-filter-columns{
+        display:grid;
+        grid-template-columns:1fr;
+        border:none;
+        padding:0;
+    }
+    .add-test-table .add-test-filter-columns .tab select{
+        margin-left:1vw;
+        padding:1vh .5vw;
+        width:95%;
+    }
+    .add-test-table .item{
+        border-top:1px #707070 solid;
+        padding:2vh 3vw;
+    }
+    .add-test-table .item .number{
+        font-size:3vw;
+        font-weight:600;
+        color:grey;
+        margin-bottom:1vh;
+    }
+    .add-test-table .item textarea{
+        width:90%;
+        padding:1vh 3vw;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        border:none;
+        border-radius:7px;
+        height:30vh;
+        font-size:2.5vw;
+        margin-bottom:2vh;
+    }
+    .add-test-table .item .answer-options .tab{
+        display:grid;
+        grid-template-columns:1fr .2fr 10fr;
+        margin-bottom:2vh;
+        width:95%;
+    }
+    .add-test-table .item .answer-options .tab .select,
+    .add-test-table .item .answer-options .tab .label{
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        padding:1.5vh 1vw;
+        border-radius:7px;
+        font-size:2.5vw;
+        text-align:center;
+    }
+    .add-test-table .item .answer-options .tab .select{
+        color:teal;
+        font-weight:bold;
+    }
+    .add-test-table .item .answer-options .tab .selected{
+        background:teal;
+        color:#f6f5f5;
+    }
+    .add-test-table .item .answer-options .tab .label input{
+        width:100%;
+        font-size:2.5vw;
+        background:none;
+        outline:none;
+        border:none;
+    }
+    .add-test-table .item .correction .input{
+        width:100%;
+        margin-bottom:2vh;
+        position:relative;
+        font-size:.2.5vw;
+    }
+    .add-test-table .item .correction .input-file{
+        padding:1.5vh 1vw;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        width:95%;
+        outline:none;
+        border:none;
+        font-size:2.5vw;
+        border-radius:5px;
+    }
+    .add-test-table .item .correction input[type=file]{
+        position:absolute;
+        left:0;
+        opacity:0;
+        width:90%;
+        cursor:pointer;
+    }
+    .add-test-table .delete-test-button{
+        background:#f00;
+        color:#fff;
+        padding:1.5vh 2vw;
+        border:none;
+        outline:none;
+        border-radius:7px;
+        font-size:2.5vw;
+        margin:1vh 0;
+    }
+    .add-test-table .add-test-button{
+        background:teal;
+        color:#fff;
+        padding:1.5vh 2vw;
+        width:90%;
+        border:none;
+        outline:none;
+        border-radius:7px;
+        font-size:2.5vw;
+    }
+    .add-test-table .upload-test-button-container{
+        padding:1vh 3vw 5vh 3vw;
+        border-top:2px teal solid;
+        margin-top:1vh;
+    }
+    .add-test-table .upload-test-button{
+        background:teal;
+        color:#fff;
+        padding:1.5vh 2vw;
+        width:95%;
+        border:none;
+        outline:none;
+        border-radius:7px;
+        font-size:2.5vw;
+    }
+    
+    
+    
+    .test-questions{
+        padding:0 5vw;
+    }
+    .test-questions .add-test-filter-columns .tab select{
+        margin-left:1vw;
+        padding:1vh .5vw;
+        width:90%;
+    }
+    .test-questions button{
+        padding:1vh 1vw;
+        background:teal;
+        color:#fff;
+        font-size:2.5vw;
+        border-radius:3px;
+        width:none;
+        outline:none;
+        border:none;
+        margin-bottom:2vh;
+        width:100%;
+    }
+    .test-questions .item{
+        border-top:1px #707070 solid;
+        padding:2vh 3vw;
+        width:90%;
+    }
+    .test-questions .item .number{
+        font-size:2.5vw;
+        font-weight:bolder;
+        color:teal;
+        margin-bottom:2vh;
+    }
+    .test-questions .item .question{
+        width:95%;
+        padding:1vh 2vw;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        border:none;
+        border-radius:7px;
+        margin-bottom:2vh;
+        font-size:2.5vw!important;
+    }
+    .test-questions .item .answer-options{
+        font-size:2.5vw!important;
+        display:grid;
+        grid-template-columns:1fr;
+    }
+    .test-questions .item .answer-options .tab{
+        display:grid;
+        grid-template-columns:1fr;
+        margin-bottom:2vh;
+        width:100%;
+    }
+    .test-questions .item .answer-options .tab .label{
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        padding:1vh 2vw;
+        border-radius:7px;
+        width:95%;
+    }
+    .test-questions .item .answer-options .tab .label input{
+        width:95%;
+        font-size:1vw;
+        background:none;
+        outline:none;
+        border:none;
+    }
+    .test-questions .item .answer-options .correct-answer .label{
+        background:teal!important;
+        color:#f6f5f5!important;
+    }
+    .test-questions .item .correction .correction-answer{
+        width:95%;
+        padding:1vh 2vw;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        border:none;
+        border-radius:7px;
+        margin-bottom:2vh;
+    }
+    .test-questions .item .correction .answer{
+        padding:1vh 2vw;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        width:95%;
+        outline:none;
+        border:none;
+        border-radius:5px;
+        margin-bottom:2vh;
+        font-size:2.5vw;
+    }
+    .test-questions .item .correction .media{
+        background:grey;
+        width:100%;
+        outline:none;
+        border:none;
+        font-size:1vw;
+        border-radius:5px;
+        height:30vh;
+    }
+    
+    
+    .filter-tab{
+        display:grid;
+        grid-template-columns:3fr 3fr 1.5fr 1.5fr;
+        font-size:1.1vw;
+        font-weight:bold;
+        color:#707070;
+        margin:0 auto 4vh auto;
+        padding:3vh 0;
+        width:90%;
+    }
+    .filter-tab .tab{
+        padding:0 1vw;
+    }
+    .filter-tab .tab select{
+        margin-left:1vw;
+        padding:1vh .5vw;
+        width:15vw;
+    }
+    .filter-tab .filter-button{
+        font-size:.85vw;
+        font-weight:bold;
+        color:#fff;
+        background:teal;
+        border-radius:30px;
+        padding:1vh 0;
+        text-align:center;
+        width:80%;
+        border:none;
+        cursor:pointer;
+    }
+    .filter-tab .search{
+        display:grid;
+        grid-template-columns:3fr 1fr;
+        border:1px #707070 solid;
+        border-radius:30px;
+        padding:1vh 1vw;
+    }
+    .filter-tab .search input{
+        background:none;
+        border:none;
+        outline:none;
+    }
+    .filter-tab .search img{
+        width:1vw;
+        margin-left:1vw;
+    }
+    
+    
+    .students-data-container {
+        display:grid;
+        grid-template-columns:1fr;
+        width:85%;
+        margin:0 auto;
+        height:80vh;
+        box-shadow:none;
+        padding:0;
+        background:#ffff;
+    }
+    .students-data-container .table{
+        overflow-y:scroll;
+        height:100%;
+        border:none;
+        overflow-x:hidden;
+    }
+    /* width */
+    .students-data-container .table::-webkit-scrollbar {
+        width: 3px;
+        height:7.5px;
+    }
+    /* Track */
+    .students-data-container .table::-webkit-scrollbar-track {
+        background:none;
+    }
+    /* Handle */
+    .students-data-container .table::-webkit-scrollbar-thumb {
+        background: grey; 
+        border-radius: 10px;
+    }
+    /* Handle on hover */
+    .students-data-container .table::-webkit-scrollbar-thumb:hover {
+        background: #000; 
+    }
+    .students-data-container .table .filter-columns{
+        display:grid;
+        grid-template-columns:1fr;
+    }
+    .students-data-container .table .filter-columns select{
+        width:100%;
+        font-size:2.5vw;
+    }
+    .students-data-container .table .filter-columns .search{
+        width:100%;
+        border-bottom:1px #bbb solid;
+        font-size:2.5vw;
+        border-radius:0;
+    }
+    .students-data-container .table .columns{
+        padding:3vh 1vw;
+        display:grid;
+        grid-template-columns:1fr 4fr 1.5fr 1.5fr;
+        border-bottom:1px #707070 solid;
+        border-top:none;
+    }
+    .students-data-container .table .columns .image{
+        width:10vw;
+        height:10vw;
+        border-radius:10vw;
+    }
+    .students-data-container .table .columns .tab{
+        padding-left:1vw;
+    }
+    .students-data-container .table .columns .tab .name{
+        font-weight:bolder;
+        color:teal;
+        margin:1vh 0;
+        font-size:4vw;
+        padding-left:5vw;
+    }
+    
+    .students-data-container .table .columns .last-seen button{
+        background:teal;
+        padding:.75vh .75vw;
+        outline:none;
+        border:none;
+        font-size:.65vw;
+        margin-top:2vh;
+        color:#fff;
+        border-radius:7px;
+        cursor:pointer;
+    }
+    
+    .students-data-container .message-container{
+        text-align:center;
+        padding-top:39vh;
+    }
+    .students-data-container .message-container .void{
+        color:#707070;
+        font-size:1.25vw;
+    }
+    
+    
+    
+    .instructors-data-container {
+        display:grid;
+        grid-template-columns:2fr 1fr;
+        width:92.5%;
+        margin:0 auto 10vh auto;
+        height:80vh;
+        box-shadow: 0px 0px 10px #00000024;
+        padding:0;
+        background:#ffff;
+    }
+    .instructors-data-container .table{
+        overflow-y:scroll;
+        height:100%;
+        border:none;
+        overflow-x:hidden;
+    }
+    .instructors-data-container .table .filter-columns{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+    .instructors-data-container .table .filter-columns select{
+        width:6.5vw;
+    }
+    .instructors-data-container .table .filter-columns .search{
+        width:12.5vw;
+        display:grid;
+        float:right;
+        grid-template-columns:0fr;
+    }
+    .instructors-data-container .table .add-instructors button{
+        background:#fff;
+        border:1.5px teal solid;
+        border-radius:20px;
+        font-size:1vw;
+        padding:1vh 2vw;
+        color:teal;
+        font-weight:bold;
+    }
+    .instructors-data-container .table .search-container{
+        text-align:right!important;
+    }
+    .instructors-data-container .table .columns{
+        padding:3vh 1vw;
+        display:grid;
+        grid-template-columns:1fr 4fr 1.5fr 1.5fr;
+        border-bottom:1px #707070 solid;
+        border-top:none;
+    }
+    .instructors-data-container .table .columns .image{
+        width:4vw;
+        height:4vw;
+        border-radius:4vw;
+    }
+    .instructors-data-container .table .columns .tab{
+        padding-left:1vw;
+        text-transform:capitalize;
+    }
+    .instructors-data-container .table .columns .tab .name{
+        font-weight:bold;
+        color:#000;
+        margin-bottom:1vh;
+    }
+    
+    .instructors-data-container .table .columns .view-profile button{
+        background:teal;
+        padding:.75vh .75vw;
+        outline:none;
+        border:none;
+        font-size:.65vw;
+        margin-top:1vh;
+        color:#fff;
+        border-radius:7px;
+        cursor:pointer;
+    }
+    
+    .instructors-data-container .message-container{
+        text-align:center;
+        padding-top:39vh;
+    }
+    .instructors-data-container .message-container .void{
+        color:#707070;
+        font-size:1.25vw;
+    }
+    
+    
+    
+    .course-details-content{
+        padding:0vh 5vw;
+    }
+    .course-details-content .head{
+        display:grid;
+        grid-template-columns:1fr;
+        margin-bottom:2vh;
+    }
+    .course-details-content .head .title{
+        font-size:6vw;
+        display:block;
+        width:none;
+    }
+    .course-details-content .head .button-container{
+        text-align:left;
+        display:block;
+        width:none;
+        padding:2vh 3.5vw 0 0;
+    }
+    .course-details-content .head .button-container button{
+        padding:1vh 1vw;
+        background:teal;
+        color:#fff;
+        font-size:2.5vw;
+        border-radius:3px;
+        width:none;
+        outline:none;
+        border:none;
+        width:100%;
+    }
+    .course-details-content .video{
+        width:100%;
+        height:40vh;
+        background:grey;
+        margin-bottom:0vh;
+    }
+    .course-details-content .text-picture-container{
+        display:grid;
+        grid-template-columns:1fr;
+    }
+    .course-details-content .text-picture-container .tab{
+        width:100%;
+        margin-top:5vh;
+    }
+    .course-details-content .text-picture-container .tab .image{
+        width:100%;
+        height:30vh;
+        margin-bottom:2vh;
+    }
+    .course-details-content .text-picture-container .tab .sub-title{
+        font-size:4vw;
+        font-weight:bold;
+        color:teal;
+    }
+    .course-details-content .text-picture-container .tab .text{
+        font-size:2.5vw;
+        font-weight:500;
+        text-align:justify;
+    }
+    .course-details-content .pdf{
+        border-top:1px #bbb solid;
+        margin-top:2vh;
+        padding-top:2vh;
+        margin-bottom:2vh;
+        padding-bottom:2vh;
+        display:grid;
+        grid-template-columns:1fr 26fr;
+        font-size:2.5vw;
+        font-weight:500;
+        color:grey;
+    }
+    .course-details-content .pdf img{
+        margin-right:1vw;
+        width:2vw;
+    }
+    
+
+
+.course-details-content .input{
+    width:100%;
+    margin-bottom:3vh;
+    position:relative;
+}
+.course-details-content input[type=text],
+.course-details-content textarea,
+.course-details-content .input-file{
+    padding:1.5vh 1vw!important;
+    background: #F6F5F5 0% 0% no-repeat padding-box;
+    width:97%;
+    outline:none;
+    border:none;
+    font-size:3vw;
+    border-radius:5px;
+}
+.course-details-content input[type=file]{
+    position:absolute;
+    left:0;
+    opacity:0;
+    width:90%;
+    cursor:pointer;
+}
+    
+    
+    .courses-table{
+        text-align:left;
+        width:85%;
+        margin:auto;
+    }
+    .courses-table .add-courses-filter-columns{
+        display:grid;
+        grid-template-columns:1fr;
+        padding:0;
+        font-size:.85vw;
+        border-bottom:none;
+        text-align:center;
+    }
+    .courses-table .form{
+        padding:1.5vh 1.5vw;
+    }
+    .courses-table .form .input{
+        width:100%;
+        margin-bottom:3vh;
+        position:relative;
+    }
+    .courses-table .form input[type=text],
+    .courses-table .form textarea,
+    .courses-table .form .input-file{
+        padding:1.5vh 3vw;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        width:95%;
+        outline:none;
+        border:none;
+        font-size:2.5vw;
+        border-radius:5px;
+    }
+    .courses-table .form input[type=file]{
+        position:absolute;
+        left:0;
+        opacity:0;
+        width:90%;
+        cursor:pointer;
+    }
+    .courses-table .form textarea{
+        height:15vh;
+    }
+    .courses-table .form .input span{
+        color:grey;
+    }
+    .courses-table .form .input .upload-button{
+        background:teal;
+        font-size:2.5vw;
+        text-align:center;
+        padding:1.5vh 0;
+        width:100%;
+        border:none;
+        color:#fff;
+        border-radius:5px;
+    }
+    
+    .courses-table .columns .button img{
+        width:3vw;
+        cursor:pointer;
+    }
+    
+    
+    
+    .popup-toggle .instructors-inner{
+        background:#fff;
+        min-height:90vh;
+        position:absolute;
+        top:5vh;
+        width:35vw;
+        box-shadow: 0 4px 8px 0 rgba(132, 132, 132, 0.2), 0 6px 20px 0 rgba(177, 177, 177, 0.19);
+        left:32.5vw;
+        margin:0 auto 10vh 0;
+        text-align:left;
+        padding:0 1vw;
+    }
+    .popup-toggle .instructors-inner .navigation{
+        font-size:1.25vw;
+        border-bottom:1px #707070 solid;
+        color:#707070;
+        font-weight:bold;
+        display:grid;
+        grid-template-columns:2fr 1fr;
+    }
+    .popup-toggle .instructors-inner .navigation .title{
+        padding:3vh 3vw;
+    }
+    .popup-toggle .instructors-inner .navigation .close{
+        font-size:2.5vw;
+        text-align:right;
+        padding:.75vh 3vw;
+    }
+    .popup-toggle .instructors-inner .navigation .close span{
+        cursor:pointer;
+    }
+    .popup-toggle .instructors-inner .form{
+        padding:3vh 1.5vw;
+    }
+    .popup-toggle .instructors-inner .form .input{
+        width:100%;
+        margin-bottom:2vh;
+        position:relative;
+    }
+    .popup-toggle .instructors-inner .form input[type=text],
+    .popup-toggle .instructors-inner .form input[type=phone],
+    .popup-toggle .instructors-inner .form input[type=email],
+    .popup-toggle .instructors-inner .form input[type=password],
+    .popup-toggle .instructors-inner .form textarea,
+    .popup-toggle .instructors-inner .form .input-file{
+        padding:1.5vh 1vw;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        width:94%;
+        outline:none;
+        border:none;
+        font-size:1vw;
+        border-radius:5px;
+    }
+    .popup-toggle .instructors-inner .form input[type=file]{
+        position:absolute;
+        left:0;
+        opacity:0;
+        width:90%;
+        cursor:pointer;
+    }
+    .popup-toggle .instructors-inner .form textarea{
+        height:15vh;
+    }
+    .popup-toggle .instructors-inner .form .input span{
+        color:grey;
+    }
+    .popup-toggle .instructors-inner .form .input .upload-button{
+        background:teal;
+        font-size:1vw;
+        text-align:center;
+        padding:2vh 0;
+        width:100%;
+        border:none;
+        color:#fff;
+        border-radius:5px;
+    }
+    
+    
+    
+    .popup-toggle .view-profile-inner{
+        background:#fff;
+        height:90vh;
+        position:absolute;
+        top:5vh;
+        width:25vw;
+        box-shadow: 0 4px 8px 0 rgba(132, 132, 132, 0.2), 0 6px 20px 0 rgba(177, 177, 177, 0.19);
+        left:37.5vw;
+        margin:auto;
+        text-align:left;
+        padding:0 1vw;
+    }
+    .popup-toggle .view-profile-inner .navigation{
+        font-size:1.25vw;
+        border-bottom:1px #707070 solid;
+        color:#707070;
+        font-weight:bold;
+        display:grid;
+        grid-template-columns:2fr 1fr;
+    }
+    .popup-toggle .view-profile-inner .navigation .title{
+        padding:3vh 3vw;
+    }
+    .popup-toggle .view-profile-inner .navigation .close{
+        font-size:2.5vw;
+        text-align:right;
+        padding:.75vh 3vw;
+    }
+    .popup-toggle .view-profile-inner .navigation .close span{
+        cursor:pointer;
+    }
+    .popup-toggle .view-profile-inner .data{
+        padding:3vh 1.5vw;
+    }
+    .popup-toggle .view-profile-inner .data .image{
+        width:10vw;
+        height:10vw;
+        border-radius:10vw;
+        margin:auto;
+    }
+    .popup-toggle .view-profile-inner .data .name{
+        font-weight:bold;
+        font-size:1.25vw;
+        text-align:center;
+        margin:3vh 0;
+    }
+    .popup-toggle .view-profile-inner .data .tab{
+        width:100%;
+        margin-bottom:2vh;
+        position:relative;
+        background: #F6F5F5 0% 0% no-repeat padding-box;
+        font-size:1vw;
+        border-radius:5px;
+        display:grid;
+        grid-template-columns:1fr 7fr;
+        border-radius:5px;
+    }
+    .popup-toggle .view-profile-inner .data .tab .icon{
+        background:teal;
+        padding:1vh 0;
+        text-align:center;
+        border-radius:5px 0 0 5px;
+    }
+    .popup-toggle .view-profile-inner .data .tab .icon img{
+        width:40%;
+    }
+    .popup-toggle .view-profile-inner .data .tab .value{
+        margin-left:1vw;
+        padding:1vh 0vw;
+        font-size:.8vw;
+    }
+}

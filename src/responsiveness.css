@@ -1,0 +1,142 @@
+.mobile{
+    display:none;
+}
+.desktop{
+    display:block;
+}
+.tablet{
+    display:none;
+}
+
+
+
+
+
+/* tablet version */
+@media screen and (max-width:1024px){
+    .desktop{
+        display:none;
+    }
+    .mobile{
+        display:none;
+    }
+    .tablet{
+        display:block;
+    }
+}
+
+
+
+
+
+/* mobile version */
+@media screen and (max-width:600px){
+    .desktop{
+        display:none;
+    }
+    .mobile{
+        display:block;
+    }
+    .tablet{
+        display:none;
+    }
+    .App{
+        margin:0;
+        padding:0;
+        width:100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* .mobile{
+    display:none;
+}
+.desktop{
+    display:block;
+}
+.tablet{
+    display:none;
+} */
+
+
+
+
+
+/* tablet version */
+/* @media screen and (max-width:1024px){
+    .desktop{
+        display:none;
+    }
+    .mobile{
+        display:none;
+    }
+    .tablet{
+        display:block;
+    }
+} */
+
+
+
+
+
+/* mobile version */
+/* @media screen and (max-width:600px){
+    .desktop{
+        display:none;
+    }
+    .mobile{
+        display:block;
+    }
+    .tablet{
+        display:none;
+    }
+    .App{
+        margin:0;
+        padding:0;
+        width:100%;
+    }
+} */

@@ -1,0 +1,146 @@
+.footer{
+    margin:0;
+    background:none;
+    padding:0;
+    position:absolute;
+    bottom:0;
+    left:0;
+    width:100%;
+}
+.footer .link{
+    text-decoration:none;
+    color:#fff;
+}
+.footer .second{
+    background:teal;
+    color:#fff;
+    padding:15vh 10vw;
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+}
+.footer .head{
+    font-size:2vw;
+    font-weight:bold;
+    padding-top:7.5vh;
+}
+.footer .head img{
+    width:5vw;
+    margin-right:1vw;
+}
+.footer .about{
+    padding:7.5vh 5vw 0 0;
+}
+.footer .about p{
+    font-size:.9vw;
+}
+
+.footer .footer-content{
+    font-size:.9vw;
+    padding-right:4vw;
+}
+.footer .footer-content h4{
+    margin-bottom:3vh;
+}
+.footer .social-media span{
+    margin-right:.5vw;
+}
+.footer .useful-link span{
+    display:block;
+    margin-bottom:.5vh;
+}
+.footer .footer-content span img{
+    width:1.25vw;
+    margin-right:.35vw;
+}
+
+.footer .footer-content .tab{
+    margin-bottom:1.5vh;
+}
+.footer .footer-content .tab .title{
+    font-weight:bold;
+}
+.footer .newsletter{
+    padding:.35vh .15vw;
+    background:#fff;
+    /* width:30vw; */
+    display:grid;
+    grid-template-columns:4fr 1fr;
+    border-radius:10px;
+}
+.footer .newsletter input{
+    background:none;
+    font-size:.9vw;
+    padding:1vh 1vw;
+    border:none;
+    outline:none;
+}
+.footer .newsletter button{
+    background:teal;
+    color:#fff;
+    font-size:.9vw;
+    padding:1vh 1vw;
+    border:none;
+    outline:none;
+    border-radius:10px;
+}
+
+
+.footer .copyright-container{
+    background:teal;
+    text-align:left;
+    border-top:1px solid rgb(41, 181, 171);
+    padding:5vh 10vw;
+    color:#fff;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+}
+
+.footer .copyright-container .logo{
+    font-weight:bold;
+    font-size:1.2vw;
+}
+.footer .copyright-container .copyright{
+    text-align:right;
+    font-size:.9vw;
+}
+
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+
+/* mobile version */
+@media screen and (max-width:600px){
+    .footer{
+        margin:0;
+        background:none;
+        padding:0;
+        position:absolute;
+        bottom:0;
+        left:0;
+        width:100%;
+    }
+    .footer .link{
+        text-decoration:none;
+        color:#fff;
+    }
+    .footer .copyright-container{
+        background:teal;
+        text-align:left;
+        border-top:1px solid rgb(41, 181, 171);
+        padding:2vh 5vw;
+        color:#fff;
+        display:grid;
+        grid-template-columns:1fr 3fr;
+    }
+    
+    .footer .copyright-container .logo{
+        font-weight:bold;
+        font-size:3vw;
+    }
+    .footer .copyright-container .copyright{
+        text-align:right;
+        font-size:2.5vw;
+    }
+}

@@ -1,0 +1,42 @@
+[
+    {
+        "value": "maths",
+        "subject": "Mathematics"
+    },
+    {
+        "value": "english",
+        "subject": "English"
+    },
+    {
+        "value": "crk",
+        "subject": "C.R.K"
+    },
+    {
+        "value": "irk",
+        "subject": "I.R.K"
+    },
+    {
+        "value": "social-studies",
+        "subject": "Social Studies"
+    },
+    {
+        "value": "health-education",
+        "subject": "Health Education"
+    },
+    {
+        "value": "computer",
+        "subject": "Computer Science"
+    },
+    {
+        "value": "spelling",
+        "subject": "Spelling"
+    },
+    {
+        "value": "language",
+        "subject": "Language"
+    },
+    {
+        "value": "diction",
+        "subject": "Diction"
+    }
+]

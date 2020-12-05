@@ -1,0 +1,90 @@
+[
+    {
+        "subject": "maths",
+        "name": "Mathematics"
+    },
+    {
+        "subject": "english",
+        "name": "English"
+    },
+    {
+        "subject": "crk",
+        "name": "C.R.K"
+    },
+    {
+        "subject": "irk",
+        "name": "I.R.K"
+    },
+    {
+        "subject": "social_studies",
+        "name": "Social Studies"
+    },
+    {
+        "subject": "health_education",
+        "name": "Health Education"
+    },
+    {
+        "subject": "computer",
+        "name": "Computer Science"
+    },
+    {
+        "subject": "spelling",
+        "name": "Spelling"
+    },
+    {
+        "subject": "language",
+        "name": "Language"
+    },
+    {
+        "subject": "diction",
+        "name": "Diction"
+    },
+    {
+        "subject": "basic_science",
+        "name": "Basic Science"
+    },
+    {
+        "subject": "business_studies",
+        "name": "Business Studies"
+    },
+    {
+        "subject": "civic",
+        "name": "Civic Education"
+    },
+    {
+        "subject": "basic_technology",
+        "name": "Basic Technology"
+    },
+    {
+        "subject": "biology",
+        "name": "Biology"
+    },
+    {
+        "subject": "physics",
+        "name": "Physics"
+    },
+    {
+        "subject": "chemistry",
+        "name": "Chemistry"
+    },
+    {
+        "subject": "economics",
+        "name": "Economics"
+    },
+    {
+        "subject": "commerce",
+        "name": "Commerce"
+    },
+    {
+        "subject": "accounting",
+        "name": "Financial Accounting"
+    },
+    {
+        "subject": "government",
+        "name": "Government"
+    },
+    {
+        "subject": "agric_science",
+        "name": "Agricultural Science"
+    }
+]

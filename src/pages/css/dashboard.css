@@ -1,0 +1,871 @@
+.dashboard{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100vw;
+    height:100vh;
+    overflow-x:hidden;
+    background:#fff;
+}
+
+.dashboard .chart{
+    background:grey;
+    width:100%;
+    height:50vh;
+}
+
+.dashboard .information{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr;
+}
+.dashboard .information img{
+    height:10vh;
+    margin-bottom:1vh;
+}
+.dashboard .information .tab{
+    border:1px grey solid;
+    text-align:center;
+    padding:3vh 0 5vh 0;
+}
+.dashboard .information .tab .value{
+    font-weight:bolder;
+    font-size:6vw;
+    margin:0!important;
+    padding:0!important;
+    color:grey;
+}
+.dashboard .information .tab .label{
+    font-weight:bold;
+    font-size:.9vw;
+    margin:0!important;
+    padding:0!important;
+    color:grey;
+}
+
+.dashboard .information .instructors-tab{
+    cursor:pointer;
+    background:rgb(213, 240, 240);
+}
+.dashboard .information .instructors-tab .value{
+    color:teal;
+}
+.dashboard .information .instructors-tab .label{
+    color:teal;
+}
+
+/* open instructor */
+.dashboard .open-instructors{
+    right:0;
+    position:fixed;
+    top:0;
+    height:100vh;
+    width:25vw;
+    transition:.5s ease all;
+}
+.dashboard .close-instructors{
+    right:-50vw;
+    position:fixed;
+    top:0;
+    height:100vh;
+    width:50vw;
+    transition:.5s ease all;
+}
+.dashboard .add-instructors{
+    font-size:.9vw;
+    background:teal;
+    color:#fff;
+    float:right;
+    border-radius:3vw;
+    padding:1vh 1vw;
+    border:none;
+    outline:none;
+    margin-top:4vh;
+    transition:.5s ease-in all;
+}
+.dashboard .add-instructors:hover{
+    border-radius:0;
+    background:#000;
+    padding:1vh 1.5vw;
+    transition:.5s ease-in all;
+}
+.dashboard .instructors-information-background{
+    /* background:rgba(0,0,0,.9);
+    width:100vw;
+    height:100vh;
+    position:absolute;
+    top:0;
+    left:0; */
+}
+.dashboard .instructors-information-inner{
+    display:grid;
+    grid-template-columns:1fr;
+    width:100%;
+    height:100vh;
+    background:#dadada;
+    position:absolute;
+    top:0;
+    right:0;
+}
+.dashboard .instructors-information-inner .close{
+    cursor:pointer;
+    font-size:2vw;
+    color:#000;
+    transition:.5s ease-in all;
+}
+.dashboard .instructors-information-inner .close:hover{
+    cursor:pointer;
+    font-size:2.5vw;
+    color:#f00;
+    transition:.5s ease-in all;
+}
+
+.dashboard .instructors-information-inner .content{
+    padding:0 2.5vw;
+    overflow-y:scroll;
+}
+/* width */
+.dashboard .instructors-information-inner .content::-webkit-scrollbar {
+    width: 3px;
+    height:7.5px;
+}
+/* Track */
+.dashboard .instructors-information-inner .content::-webkit-scrollbar-track {
+    background:none;
+}
+/* Handle */
+.dashboard .instructors-information-inner .content::-webkit-scrollbar-thumb {
+    background: grey; 
+    border-radius: 10px;
+}
+/* Handle on hover */
+.dashboard .instructors-information-inner .content::-webkit-scrollbar-thumb:hover {
+    background: #000; 
+}
+.dashboard .instructors-information-inner .search{
+    display:grid;
+    grid-template-columns:1fr 6fr;
+    border-bottom:2px grey solid;
+    margin:2vh 0;
+}
+.dashboard .instructors-information-inner .search img{
+    font-size:1vw;
+    margin-right:1vw;
+    cursor:pointer;
+    width:50%;
+    position:relative;
+    top:2vh;
+}
+.dashboard .instructors-information-inner .search input{
+    font-size:.9vw;
+    padding:.5vh 0!important;
+    background:none;
+    width:100%;
+    margin-bottom:.5vh;
+    border:none;
+}
+.dashboard .instructors-information-inner .instructor-list .columns{
+    display:grid;
+    grid-template-columns:1fr 1.5fr;
+    padding:2vh 0;
+    border-bottom:1px grey solid;
+}
+.dashboard .instructors-information-inner .instructor-list .image{
+    width:4vw;
+    height:4vw;
+    border-radius:4vw;
+}
+.dashboard .instructors-information-inner .instructor-list .name{
+    font-size:.9vw;
+    font-weight:bold;
+    color:teal;
+    padding-top:.5vh;
+}
+.dashboard .instructors-information-inner .instructor-list .email{
+    font-size:.9vw;
+    padding-top:1vh;
+}
+
+.dashboard .instructors-information{
+    font-size:1vw;
+    padding:40vh 2vw;
+}
+
+
+/* popup */
+.dashboard .popup{
+    width:100%;
+    height:100vh;
+    position:fixed;
+    top:0;
+    left:100vw;
+    z-index:400000;
+    text-align:center;
+    overflow-x:hidden;
+    transition:.5s ease-in-out all;
+    z-index:100000;
+}
+.dashboard .popup-toggle{
+    width:100%;
+    height:100%;
+    position:fixed;
+    top:0;
+    left:0;
+    z-index:400000;
+    text-align:center;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    transition:.5s ease-in-out all;
+}
+.dashboard .popup-toggle .background{
+    background:rgba(0,0,0,.8);
+    width:100vw;
+    height:100vh;
+    position:fixed;
+    top:0;
+    transition:.5s ease-in-out all;
+    left:0;
+}
+.dashboard .popup-toggle .inner,
+.dashboard .popup .inner{
+    background:#fff;
+    padding-bottom:5vh;
+    top:0;
+    position:absolute;
+    width:30vw;
+    box-shadow: 0 4px 8px 0 rgba(132, 132, 132, 0.2), 0 6px 20px 0 rgba(177, 177, 177, 0.19);
+    right:0;
+    text-align:left;
+    height:100vh;
+    overflow-y:scroll;
+}
+
+/* width */
+.dashboard .popup-toggle .inner::-webkit-scrollbar,
+.dashboard .popup .inner::-webkit-scrollbar {
+    width: 7.6px;
+    height:7.5px;
+    transition:.5s ease-in-out all;
+}
+
+/* Track */
+.dashboard .popup-toggle .inner::-webkit-scrollbar-track,
+.dashboard .popup .inner::-webkit-scrollbar-track {
+    background:none;
+    transition:.5s ease-in-out all;
+}
+
+/* Handle */
+.dashboard .popup-toggle .inner::-webkit-scrollbar-thumb,
+.dashboard .popup .inner::-webkit-scrollbar-thumb {
+    background: teal; 
+    border-radius: 10px;
+    transition:.5s ease-in-out all;
+}
+
+/* Handle on hover */
+.dashboard .popup-toggle .inner::-webkit-scrollbar-thumb:hover,
+.dashboard .popup .inner::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+    transition:.5s ease-in-out all;
+}
+
+.dashboard .popup-toggle .inner .close-donate,
+.dashboard .popup .inner .close-donate{
+    padding:0 2vw 4vh 2vw;
+    color:#f00;
+}
+.dashboard .popup-toggle .inner .close-donate span,
+.dashboard .popup .inner .close-donate span{
+    cursor:pointer;
+    font-size:.9vw;
+}
+.dashboard .popup-toggle .inner .content,
+.dashboard .popup .inner .content{
+    padding:0 2vw;
+    text-align:left;
+}
+.dashboard .popup-toggle .inner .content .image img,
+.dashboard .popup .inner .content .image img{
+    width:30vw;
+}
+.dashboard .popup-toggle .inner .content .text,
+.dashboard .popup .inner .content .text{
+    font-size:1.2vw;
+    text-align:left;
+    padding:0 1.5vw;
+    color:#000;
+    margin-bottom:3vh;
+}
+
+.dashboard .popup-toggle .inner .content .text .title,
+.dashboard .popup .inner .content .text .title{
+    margin-bottom:3vh;
+}
+
+.dashboard .popup-toggle .inner .content .text .input,
+.dashboard .popup .inner .content .text .input{
+    display:grid;
+    grid-template-columns:1fr 15fr;
+    background:#bbb;
+    border-radius:5px;
+    padding:1.5vh 1vw;
+    margin-bottom:3vh;
+    position:relative;
+}
+.dashboard .popup-toggle .inner .content .text .input-file,
+.dashboard .popup .inner .content .text .input-file{
+    outline:none;
+    border:none;
+    font-size:1vw;
+    text-align:left;
+    padding-left:1vw;
+    position:relative;
+}
+.dashboard .popup-toggle .inner .content .text input[type=file],
+.dashboard .popup .inner .content .text input[type=file]{
+    position:absolute;
+    left:0;
+    top:0;
+    opacity:0;
+    width:100%;
+    height:100%;
+    cursor:pointer;
+    border:1px solid #000;
+}
+.dashboard .popup-toggle .inner .content .text .input img,
+.dashboard .popup .inner .content .text .input img{
+    width:80%;
+}
+.dashboard .popup-toggle .inner .content .text .input input,
+.dashboard .popup-toggle .inner .content .text .input select,
+.dashboard .popup .inner .content .text .input input,
+.dashboard .popup .inner .content .text .input select{
+    padding:0 1vw;
+    border:none;
+    outline:none;
+    font-size:.85vw;
+    background:none;
+}
+.dashboard .popup-toggle .inner .content .text .preview-picture,
+.dashboard .popup .inner .content .text .preview-picture{
+    display:block;
+    width:100%;
+    border-radius:5px;
+    margin-bottom:3vh;
+}
+.dashboard .popup-toggle .inner .content .text button,
+.dashboard .popup .inner .content .text button{
+    padding:1.5vh 0;
+    text-align:center;
+    width:100%;
+    background:teal;
+    border-radius:5px;
+    border:none;
+    color:#fff;
+    font-size:.85vw;
+    cursor:pointer;
+}
+.dashboard .popup-toggle .inner .content .extras,
+.dashboard .popup .inner .content .extras{
+    padding-left:1.5vw;
+}
+.dashboard .popup-toggle .inner .content .extras p,
+.dashboard .popup .inner .content .extras p{
+    color:grey;
+    font-size:.85vw;
+}
+.dashboard .popup-toggle .inner .content .extras p .important,
+.dashboard .popup .inner .content .extras p .important{
+    color:teal;
+    font-size:.85vw;
+    cursor:pointer;
+}
+
+
+
+.dashboard .popup-toggle .inner .content .profile-image,
+.dashboard .popup .inner .content .profile-image{
+    width:15vw;
+    height:15vw;
+    border-radius:15vw;
+    margin:auto;
+    border:10px rgb(8, 169, 169) solid;
+    animation-name:profile;
+    animation-duration:3s;
+    animation-iteration-count:infinite;
+}
+.dashboard .popup-toggle .inner .content .name,
+.dashboard .popup .inner .content .name{
+    font-size:2.5vw;
+    text-transform:uppercase;
+    font-weight:bolder;
+    text-align:center;
+    margin-top:1vh;
+}
+.dashboard .popup-toggle .inner .content .name .surname,
+.dashboard .popup .inner .content .name .surname{
+    color:teal;
+}
+.dashboard .popup-toggle .inner .content .profile-tab,
+.dashboard .popup .inner .content .profile-tab{
+    display:grid;
+    grid-template-columns:1fr 4fr;
+    margin:0!important;
+    padding-left:2vw;
+}
+.dashboard .popup-toggle .inner .content .profile-tab .icon,
+.dashboard .popup .inner .content .profile-tab .icon{
+    padding-left:2vw;
+    margin:0!important;
+}
+.dashboard .popup-toggle .inner .content .profile-tab .icon img,
+.dashboard .popup .inner .content .profile-tab .icon img{
+    width:1.5vw;
+}
+.dashboard .popup-toggle .inner .content .profile-tab .value,
+.dashboard .popup .inner .content .profile-tab .value{
+    font-size:1.2vw;
+    margin:0!important;
+    padding:0!important;
+}
+.dashboard .popup-toggle .inner .content .input,
+.dashboard .popup .inner .content .input{
+    color:grey;
+}
+
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+/* breakkkk */
+
+/* mobile version */
+@media screen and (max-width:600px){
+    .dashboard{
+        position:absolute;
+        top:0;
+        left:0;
+        width:100vw;
+        overflow-x:hidden;
+        background:#fff;
+        font-size:2.5vw;
+    }
+    
+    .dashboard .chart{
+        background:grey;
+        width:100%;
+        height:30vh;
+    }
+    
+    .dashboard .information{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+    .dashboard .information img{
+        height:10vh;
+        margin-bottom:1vh;
+    }
+    .dashboard .information .tab{
+        border:1px grey solid;
+        text-align:center;
+        padding:1.5vh 0 5vh 0;
+    }
+    .dashboard .information .tab .value{
+        font-weight:bolder;
+        font-size:20vw;
+        margin:0!important;
+        padding:0!important;
+        color:grey;
+    }
+    .dashboard .information .tab .label{
+        font-weight:bold;
+        font-size:2.5vw;
+        margin:0!important;
+        padding:0!important;
+        color:grey;
+    }
+    
+    .dashboard .information .instructors-tab{
+        cursor:pointer;
+        background:rgb(213, 240, 240);
+    }
+    .dashboard .information .instructors-tab .value{
+        color:teal;
+    }
+    .dashboard .information .instructors-tab .label{
+        color:teal;
+    }
+    
+    
+    
+    .dashboard .open-instructors{
+        right:0;
+        position:fixed;
+        top:0;
+        height:100vh;
+        width:100vw;
+        transition:.5s ease all;
+    }
+    .dashboard .close-instructors{
+        right:-50vw;
+        position:fixed;
+        top:0;
+        height:100vh;
+        width:50vw;
+        transition:.5s ease all;
+    }
+    .dashboard .add-instructors{
+        font-size:2.5vw;
+        background:teal;
+        color:#fff;
+        float:right;
+        border-radius:3vw;
+        padding:1vh 5vw;
+        border:none;
+        outline:none;
+        margin-top:4vh;
+        transition:.5s ease-in all;
+    }
+    .dashboard .instructors-information-inner{
+        display:grid;
+        grid-template-columns:1fr;
+        width:100%;
+        height:100vh;
+        background:#dadada;
+        position:absolute;
+        top:0;
+        right:0;
+    }
+    .dashboard .instructors-information-inner .close{
+        cursor:pointer;
+        font-size:10vw;
+        color:#000;
+        transition:.5s ease-in all;
+    }
+    .dashboard .instructors-information-inner .content{
+        padding:0 7.5vw;
+        overflow-y:scroll;
+    }
+    /* width */
+    .dashboard .instructors-information-inner .content::-webkit-scrollbar {
+        width: 3px;
+        height:7.5px;
+    }
+    /* Track */
+    .dashboard .instructors-information-inner .content::-webkit-scrollbar-track {
+        background:none;
+    }
+    /* Handle */
+    .dashboard .instructors-information-inner .content::-webkit-scrollbar-thumb {
+        background: grey; 
+        border-radius: 10px;
+    }
+    /* Handle on hover */
+    .dashboard .instructors-information-inner .content::-webkit-scrollbar-thumb:hover {
+        background: #000; 
+    }
+    .dashboard .instructors-information-inner .search{
+        display:grid;
+        grid-template-columns:1fr 6fr;
+        border-bottom:2px grey solid;
+        margin:3vh 0 0 0;
+        padding:0 2vw;
+    }
+    .dashboard .instructors-information-inner .search img{
+        font-size:1vw;
+        margin-right:0vw;
+        cursor:pointer;
+        width:4vw;
+        position:relative;
+        top:4vh;
+    }
+    .dashboard .instructors-information-inner .search input{
+        font-size:3vw;
+        padding:1vh 0!important;
+        background:none;
+        width:100%;
+        margin-bottom:0vh;
+        border:none;
+    }
+    .dashboard .instructors-information-inner .instructor-list .columns{
+        display:grid;
+        grid-template-columns:1fr 3fr;
+        padding:2vh 0;
+        border-bottom:1px grey solid;
+    }
+    .dashboard .instructors-information-inner .instructor-list .image{
+        width:20vw;
+        height:20vw;
+        border-radius:20vw;
+    }
+    .dashboard .instructors-information-inner .instructor-list .name{
+        font-size:6vw;
+        font-weight:bold;
+        color:teal;
+        padding-top:.5vh;
+    }
+    .dashboard .instructors-information-inner .instructor-list .email{
+        font-size:2.5vw;
+        padding-top:1vh;
+    }
+    
+    
+    
+    .dashboard .instructors-information{
+        font-size:1vw;
+        padding:40vh 2vw;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    .dashboard .popup{
+        width:100%;
+        height:100vh;
+        position:fixed;
+        top:0;
+        left:100vw;
+        z-index:400000;
+        text-align:center;
+        overflow-x:hidden;
+        transition:.5s ease-in-out all;
+        z-index:100000;
+    }
+    .dashboard .popup-toggle{
+        width:100%;
+        height:100%;
+        position:fixed;
+        top:0;
+        left:0;
+        z-index:400000;
+        text-align:center;
+        overflow-x:hidden;
+        overflow-y:hidden;
+        transition:.5s ease-in-out all;
+    }
+    .dashboard .popup-toggle .background{
+        background:rgba(0,0,0,.8);
+        width:100vw;
+        height:100vh;
+        position:fixed;
+        top:0;
+        transition:.5s ease-in-out all;
+        left:0;
+    }
+    .dashboard .popup-toggle .inner,
+    .dashboard .popup .inner{
+        background:#fff;
+        padding-bottom:5vh;
+        top:0;
+        position:absolute;
+        width:100vw;
+        box-shadow: 0 4px 8px 0 rgba(132, 132, 132, 0.2), 0 6px 20px 0 rgba(177, 177, 177, 0.19);
+        right:0;
+        text-align:left;
+        height:100vh;
+        overflow-y:scroll;
+    }
+    
+    /* width */
+    .dashboard .popup-toggle .inner::-webkit-scrollbar,
+    .dashboard .popup .inner::-webkit-scrollbar {
+        width: 7.6px;
+        height:7.5px;
+        transition:.5s ease-in-out all;
+    }
+    
+    /* Track */
+    .dashboard .popup-toggle .inner::-webkit-scrollbar-track,
+    .dashboard .popup .inner::-webkit-scrollbar-track {
+        background:none;
+        transition:.5s ease-in-out all;
+    }
+    
+    /* Handle */
+    .dashboard .popup-toggle .inner::-webkit-scrollbar-thumb,
+    .dashboard .popup .inner::-webkit-scrollbar-thumb {
+        background: teal; 
+        border-radius: 10px;
+        transition:.5s ease-in-out all;
+    }
+    
+    /* Handle on hover */
+    .dashboard .popup-toggle .inner::-webkit-scrollbar-thumb:hover,
+    .dashboard .popup .inner::-webkit-scrollbar-thumb:hover {
+        background: #b30000; 
+        transition:.5s ease-in-out all;
+    }
+    
+    .dashboard .popup-toggle .inner .close-donate,
+    .dashboard .popup .inner .close-donate{
+        padding:2vh 5vw;
+        color:#f00;
+    }
+    .dashboard .popup-toggle .inner .close-donate span,
+    .dashboard .popup .inner .close-donate span{
+        cursor:pointer;
+        font-size:3vw;
+    }
+    .dashboard .popup-toggle .inner .content,
+    .dashboard .popup .inner .content{
+        padding:0 2vw;
+        text-align:left;
+    }
+    .dashboard .popup-toggle .inner .content .image img,
+    .dashboard .popup .inner .content .image img{
+        width:30vw;
+    }
+    .dashboard .popup-toggle .inner .content .text,
+    .dashboard .popup .inner .content .text{
+        font-size:5vw;
+        text-align:left;
+        padding:0 15vw 0 7.5vw;
+        color:#000;
+        margin-bottom:3vh;
+    }
+    
+    .dashboard .popup-toggle .inner .content .text .title,
+    .dashboard .popup .inner .content .text .title{
+        margin-bottom:3vh;
+    }
+    
+    .dashboard .popup-toggle .inner .content .text .input,
+    .dashboard .popup .inner .content .text .input{
+        display:grid;
+        grid-template-columns:1fr 15fr;
+        background:#bbb;
+        border-radius:5px;
+        padding:1.5vh 5vw;
+        margin-bottom:3vh;
+        position:relative;
+    }
+    .dashboard .popup-toggle .inner .content .text .input-file,
+    .dashboard .popup .inner .content .text .input-file{
+        outline:none;
+        border:none;
+        font-size:2.5vw;
+        text-align:left;
+        padding-left:1vw;
+        position:relative;
+    }
+    .dashboard .popup-toggle .inner .content .text input[type=file],
+    .dashboard .popup .inner .content .text input[type=file]{
+        position:absolute;
+        left:0;
+        top:0;
+        opacity:0;
+        width:100%;
+        height:100%;
+        cursor:pointer;
+        font-size:2.5vw;
+        border:1px solid #000;
+    }
+    .dashboard .popup-toggle .inner .content .text .input img,
+    .dashboard .popup .inner .content .text .input img{
+        width:80%;
+    }
+    .dashboard .popup-toggle .inner .content .text .input input,
+    .dashboard .popup-toggle .inner .content .text .input select,
+    .dashboard .popup .inner .content .text .input input,
+    .dashboard .popup .inner .content .text .input select{
+        padding:0 3vw;
+        border:none;
+        outline:none;
+        font-size:2.5vw;
+        background:none;
+    }
+    .dashboard .popup-toggle .inner .content .text .preview-picture,
+    .dashboard .popup .inner .content .text .preview-picture{
+        display:block;
+        width:100%;
+        border-radius:5px;
+        margin-bottom:3vh;
+    }
+    .dashboard .popup-toggle .inner .content .text button,
+    .dashboard .popup .inner .content .text button{
+        padding:1.5vh 0;
+        text-align:center;
+        width:100%;
+        background:teal;
+        border-radius:5px;
+        border:none;
+        color:#fff;
+        font-size:2.5vw;
+        cursor:pointer;
+    }
+    .dashboard .popup-toggle .inner .content .extras,
+    .dashboard .popup .inner .content .extras{
+        padding-left:1.5vw;
+    }
+    .dashboard .popup-toggle .inner .content .extras p,
+    .dashboard .popup .inner .content .extras p{
+        color:grey;
+        font-size:.85vw;
+    }
+    .dashboard .popup-toggle .inner .content .extras p .important,
+    .dashboard .popup .inner .content .extras p .important{
+        color:teal;
+        font-size:.85vw;
+        cursor:pointer;
+    }
+    
+    
+    
+    .dashboard .popup-toggle .inner .content .profile-image,
+    .dashboard .popup .inner .content .profile-image{
+        width:15vw;
+        height:15vw;
+        border-radius:15vw;
+        margin:auto;
+        border:10px rgb(8, 169, 169) solid;
+        animation-name:profile;
+        animation-duration:3s;
+        animation-iteration-count:infinite;
+    }
+    .dashboard .popup-toggle .inner .content .name,
+    .dashboard .popup .inner .content .name{
+        font-size:2.5vw;
+        text-transform:uppercase;
+        font-weight:bolder;
+        text-align:center;
+        margin-top:1vh;
+    }
+    .dashboard .popup-toggle .inner .content .name .surname,
+    .dashboard .popup .inner .content .name .surname{
+        color:teal;
+    }
+    .dashboard .popup-toggle .inner .content .profile-tab,
+    .dashboard .popup .inner .content .profile-tab{
+        display:grid;
+        grid-template-columns:1fr 4fr;
+        margin:0!important;
+        padding-left:2vw;
+    }
+    .dashboard .popup-toggle .inner .content .profile-tab .icon,
+    .dashboard .popup .inner .content .profile-tab .icon{
+        padding-left:2vw;
+        margin:0!important;
+    }
+    .dashboard .popup-toggle .inner .content .profile-tab .icon img,
+    .dashboard .popup .inner .content .profile-tab .icon img{
+        width:1.5vw;
+    }
+    .dashboard .popup-toggle .inner .content .profile-tab .value,
+    .dashboard .popup .inner .content .profile-tab .value{
+        font-size:1.2vw;
+        margin:0!important;
+        padding:0!important;
+    }
+    .dashboard .popup-toggle .inner .content .input,
+    .dashboard .popup .inner .content .input{
+        color:grey;
+    }
+}

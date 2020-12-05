@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Teko:wght@500&family=Varela&family=Varela+Round&display=swap');
+
+.App{
+    font-size:4vw;
+    font-family: 'Varela Round', sans-serif;
+    background:grey;
+}
+.title{
+    font-family: 'Teko', sans-serif;
+}
+.sub-title{
+    font-family: 'Varela', sans-serif;
+}
+
+
+/* desktop version */
+.navMobile, .navTablet{
+    display:none;
+}
+
+/* tablet version */
+@media screen and (max-width:1024px){
+    /* .navDesktop, .navMobile{
+        display:none;
+    } */
+}
+
+/* mobile version */
+@media screen and (max-width:600px){
+    /* .navDesktop, .navTablet{
+        display:none;
+    } */
+}
