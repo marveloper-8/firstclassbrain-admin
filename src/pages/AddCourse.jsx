@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, useContext} from 'react'
 import {useHistory} from 'react-router-dom'
-import M from 'materialize-css'
+import { toast } from 'react-toastify';
+import {UserContext} from '../App'
 
 import Footer from './Footer'
 import Navigation from './Navigation'
@@ -18,7 +19,19 @@ import terms from '../data/terms.json'
 import weeks from '../data/weeks.json'
 
 function Terms() {
+    // authentication
     const history = useHistory()
+    const {dispatch} = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem("admin"))
+
+    useEffect(() => {
+      if(user){
+        dispatch({type: "USER", payload: user})
+      } else{
+        history.push('/authentication')
+      }
+    }, [])
+    // authentication end
 
     const [loading, setLoading] = useState(false)
     
@@ -64,26 +77,10 @@ function Terms() {
     const [secondTextSlide, setSecondTextSlide] = useState("Second Paragraph")
     const [thirdTextSlide, setThirdTextSlide] = useState("Third Paragraph")
     const [fourthTextSlide, setFourthTextSlide] = useState("Fourth Paragraph")
+    const [postedByWho] = useState("Super Admin")
+    const [postedByWhoLink] = useState("null")
 
     const [url, setUrl] = useState(undefined)
-    
-    const uploadPic = () =>{
-        const data = new FormData()
-        data.append("file", image)
-        data.append("upload_preset","ao-estate")
-        data.append("cloud_name","josh-equere")
-        fetch("https://api.cloudinary.com/v1_1/josh-equere/image/upload",{
-            method:"post",
-            body:data
-        })
-        .then(res=>res.json())
-        .then(data=>{
-           setUrl(data.url)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    }
 
     const uploadFields = useCallback(() => {
         setLoading(true)
@@ -102,16 +99,18 @@ function Terms() {
                 secondTextSlide,
                 thirdTextSlide,
                 fourthTextSlide,
+                postedByWho,
+                postedByWhoLink,
                 courseThumbnail: url
             })
         }).then(res => res.json())
             .then(data => {
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Uploaded successfully", classes:"#c62828 teal darken-3"})
+                    toast.success("Uploaded successfully")
                     history.push('/courses')
                 }
             })
@@ -125,7 +124,27 @@ function Terms() {
         if(url){
             uploadFields()
         }
-    }, [url, uploadFields])
+    }, [url])
+    
+    const uploadPic = () =>{
+        const data = new FormData()
+        data.append("file", image)
+        data.append("upload_preset","ao-estate")
+        data.append("cloud_name","josh-equere")
+        fetch("https://api.cloudinary.com/v1_1/josh-equere/image/upload",{
+            method:"post",
+            body:data
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            setLoading(false)
+           setUrl(data.url)
+        })
+        .catch(err=>{
+            setLoading(false)
+            console.log(err)
+        })
+    }
     
     const PostSignup = e =>{
         e.preventDefault()
@@ -282,15 +301,10 @@ function Terms() {
                         <div className="input">
                             <button 
                                 type="submit"
-                                className="btn waves-effect waves-light #64b5f6 teal darken-1 upload-button"
+                                className={loading ? "disabled" : ""}
+                                disabled = {loading ? true : false}
                             >
-                                {
-                                    loading
-                                    ?
-                                    <i class="fa fa-spinner fa-spin"></i>
-                                    :
-                                    "UPLOAD MATERIAL"
-                                }
+                                {loading ? "LOADING.." : "UPLOAD COURSE"}
                             </button>
                         </div>
                     </div>

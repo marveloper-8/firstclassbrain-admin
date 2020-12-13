@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, useContext} from 'react'
 import {useHistory, useParams} from 'react-router-dom'
-
+import { toast } from 'react-toastify';
+import {UserContext} from '../App'
 // components
 import Footer from './Footer'
 import Navigation from './Navigation'
@@ -17,40 +18,34 @@ import tests_icon from '../icons/tests.svg'
 import subjects from '../data/subjects.json'
 
 function Terms() {
+    // authentication
     const history = useHistory()
-    const {userId} = useParams()
+    const {dispatch} = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem("admin"))
 
-    const [url, setUrl] = useState(undefined)
-    const [image, setImage] = useState()
-    const [preview, setPreview] = useState()
-
-    const [courses, setCourses] = useState([])
-
-    // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
-        if (!image) {
-            setPreview(undefined)
-            return
-        }
+      if(user){
+        dispatch({type: "USER", payload: user})
+      } else{
+        history.push('/authentication')
+      }
+    }, [])
+    // authentication end
 
-        const objectUrl = URL.createObjectURL(image)
-        setPreview(objectUrl)
+    const [loading, setLoading] = useState(false)
+    const [topics, setTopics] = useState([])
 
-        // free memory when ever this component is unmounted
-        return () => URL.revokeObjectURL(objectUrl)
-    }, [image])
-
-    const onSelectFile = e => {
-        if (!e.target.files || e.target.files.length === 0) {
-            setImage(undefined)
-            return
-        }
-
-        // I've kept this example simple by using the first image instead of multiple
-        setImage(e.target.files[0])
-    }
-
-    console.log(userId)
+    useEffect(()=>{
+        fetch('https://firstclassbrain-server.herokuapp.com/all-courses', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem("jwt")
+            }
+        })
+            .then(res => res.json())
+            .then(result => {
+                setTopics(result.posts)
+            })
+    },[])
 
     const [state, setState] = useState({
         type: 1,
@@ -58,9 +53,12 @@ function Terms() {
         subject: "maths",
         term: 1,
         week: 1,
-        hours: {},
-        minutes:{},
-        topic: "topic",
+        hours: 0,
+        minutes:1,
+        title: "Test Title",
+        topic: "Select a Topic",
+        postedByWho:"Super Admin",
+        postedByWhoLink: "admin",
         questions: [
             {   id: 1,
                 question: "question", 
@@ -68,41 +66,22 @@ function Terms() {
                 answerB: "Answer B", 
                 answerC: "Answer C", 
                 answerD: "Answer D", 
-                correctAnswer: "correct answer", 
-                correction: "correction", 
-                correctionImage: url,
-                // preview: ``
+                correctAnswer: "answerA", 
+                correction: "correction"
             }
         ]
     })
 
     const testType = `${state.type}`
-    
-    const uploadPic = ()=>{
-        const data = new FormData()
-        data.append("file",image)
-        data.append("upload_preset","ao-estate")
-        data.append("cloud_name","josh-equere")
-        fetch("https://api.cloudinary.com/v1_1/josh-equere/image/upload",{
-            method:"post",
-            body:data
-        })
-        .then(res=>res.json())
-        .then(data=>{
-           setUrl(data.url)
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    }
 
-    const handleSubmit = useCallback((evt) => {
+    const PostTest = (evt) => {
         evt.preventDefault()
 
-        const { type, classSelected, subject, term, week, hours, minutes, topic, questions } = state
+        const { type, classSelected, subject, term, week, hours, minutes, topic, postedByWho, postedByWhoLink, title, questions } = state
 
-        const data = { type, classSelected, subject, term, week, hours, minutes, topic, questions }
+        const data = { type, classSelected, subject, term, week, hours, minutes, topic, postedByWho, postedByWhoLink, title, questions }
 
+        setLoading(true)
         fetch('https://firstclassbrain-server.herokuapp.com/upload-test', {
             method: 'POST',
             headers: {
@@ -112,26 +91,13 @@ function Terms() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            toast.success('Success:', data);
+            history.push('/tests')
         })
         .catch((error) => {
-            console.error('Error:', error);
+            setLoading(false)
+            toast.error('Error:', error);
         });
-    })
-    
-    useEffect(()=>{
-        if(url){
-            handleSubmit()
-        }
-    }, [url, handleSubmit])
-    
-    const PostTest = (e) =>{
-        e.preventDefault()
-        if(image){
-            uploadPic()
-        }else{
-            handleSubmit()
-        }
     }
 
     const handleAddShareholder = () => {
@@ -208,16 +174,6 @@ function Terms() {
         
         setState({...state, questions: newQuestions });
     }
-
-    const handleShareholderCorrectionImageChange = (idx) => (evt) => {
-        evt.preventDefault()
-        const newQuestions = state.questions.map((shareholder, qidx) => {
-          if (idx !== qidx) return shareholder;
-          return { ...shareholder, correctionImage: evt.target.value };
-        });
-        
-        setState({...state, questions: newQuestions });
-    }
     
     return (
         <div className="dashboard">
@@ -226,27 +182,6 @@ function Terms() {
 
                 <form className="table add-test-table" onSubmit={PostTest}>
                     <div className="filter-columns add-test-filter-columns">
-                        <div className="tab">
-                            <select name="type"
-                                className="sub-title"
-                                value={state.type}
-                                onChange={onChangeEvent}
-                            >
-                                <option value={1} selected>
-                                    Assignment
-                                </option>
-                                <option value={2}>
-                                    Weekly Assessment
-                                </option>
-                                <option value={3}>
-                                    Mid Term Test
-                                </option>
-                                <option value={4}>
-                                    Examination
-                                </option>
-                            </select>
-                        </div>
-
                         <div className="tab">
                             <select name="classSelected"
                                 className="sub-title"
@@ -315,14 +250,26 @@ function Terms() {
                                 onChange={onChangeEvent}
                                 required
                             >
+                                <option value="select topic">-- Select a Topic</option>
                                 {
                                     subjects.map(item => {
                                         return(
-                                            <option value={item.subject} selected>{item.name}</option>
+                                            <option value={item.subject}>{item.name}</option>
                                         )
                                     })
                                 }
                             </select>
+                        </div>
+
+                        <div className="tab">
+                            <input name="title"
+                                type="text"
+                                placeholder="Enter title"
+                                className="sub-title"
+                                value={state.title}
+                                onChange={onChangeEvent}
+                                required
+                            />
                         </div>
                         
                         <div className="tab">
@@ -343,7 +290,50 @@ function Terms() {
                                 </option>
                             </select>
                         </div>
+
+                        <div className="tab">
+                            <input name="minutes"
+                                type="number"
+                                placeholder="Input number of minutes"
+                                className="sub-title"
+                                value={state.minutes}
+                                onChange={onChangeEvent}
+                                required
+                            />
+                        </div>
                         
+                        <div className="tab">
+                            <input name="hours"
+                                type="number"
+                                placeholder="Input number of hours"
+                                className="sub-title"
+                                value={state.hours}
+                                onChange={onChangeEvent}
+                                required
+                            />
+                        </div>
+
+                        <div className="tab">
+                            <select name="type"
+                                className="sub-title"
+                                value={state.type}
+                                onChange={onChangeEvent}
+                            >
+                                <option value={1} selected>
+                                    Assignment
+                                </option>
+                                <option value={2}>
+                                    Weekly Assessment
+                                </option>
+                                <option value={3}>
+                                    Mid Term Test
+                                </option>
+                                <option value={4}>
+                                    Examination
+                                </option>
+                            </select>
+                        </div>
+
                         <div className="tab">
                             <select name="week"
                                 className="sub-title"
@@ -447,8 +437,9 @@ function Terms() {
                                     false
                                 }
                             >
+                                <option value="null">-- Select a topic</option>
                                 {
-                                    courses.map(item => {
+                                    topics.map(item => {
                                         return(
                                             <option value={item._id} selected>{item.courseTitle}</option>
                                         )
@@ -456,34 +447,11 @@ function Terms() {
                                 }
                             </select>
                         </div>
-                    
-                        <div className="tab">
-                            <input name="hours"
-                                type="number"
-                                placeholder="Input number of hours"
-                                className="sub-title"
-                                value={state.hours}
-                                onChange={onChangeEvent}
-                                required
-                            />
-                        </div>
-
-                        <div className="tab">
-                            <input name="minutes"
-                                type="number"
-                                placeholder="Input number of seconds"
-                                className="sub-title"
-                                value={state.minutes}
-                                onChange={onChangeEvent}
-                                required
-                            />
-                        </div>
-                    
                     </div>
 
                     {state.questions.map((shareholder, idx) => (
                         <div className="item">
-                            <div className="number">Question 1</div>
+                            <div className="number">Question</div>
                             <div className="question">
                                 <textarea 
                                     key={idx + 1}
@@ -492,7 +460,7 @@ function Terms() {
                                     onChange={handleShareholderQuestionChange(idx)}
                                 ></textarea>
                             </div>
-                            {shareholder.correctAnswer}
+                            {/* {shareholder.correctAnswer} */}
                             <div className="answer-options">
                                 <div className="tab">
                                     <div className="select">
@@ -501,6 +469,7 @@ function Terms() {
                                             name={idx + 1}
                                             value="answerA"
                                             className="radio"
+                                            required
                                             // value={shareholder.correctAnswer}
                                             onChange={handleShareholderCorrectAnswerChange(idx)}
                                         />
@@ -526,6 +495,7 @@ function Terms() {
                                             name={idx + 1}
                                             value="answerB"
                                             className="radio"
+                                            required
                                             // value={shareholder.correctAnswer}
                                             onChange={handleShareholderCorrectAnswerChange(idx)}
                                         />
@@ -551,6 +521,7 @@ function Terms() {
                                             name={idx + 1}
                                             value="answerC"
                                             className="radio"
+                                            required
                                             // value={shareholder.correctAnswer}
                                             onChange={handleShareholderCorrectAnswerChange(idx)}
                                         />
@@ -576,6 +547,7 @@ function Terms() {
                                             name={idx + 1}
                                             value="answerD"
                                             className="radio"
+                                            required
                                             // value={shareholder.correctAnswer}
                                             onChange={handleShareholderCorrectAnswerChange(idx)}
                                         />
@@ -603,38 +575,33 @@ function Terms() {
                                     value={shareholder.correction}
                                     onChange={handleShareholderCorrectionChange(idx)}
                                 ></textarea>
-                                <div className="input-file">
-                                    <span>Upload Media</span>
-                                    <input type="file"
-                                        key={idx + 1} 
-                                        placeholder="image"
-                                        value={shareholder.correctionImage}
-                                        onChange={handleShareholderCorrectionImageChange(idx)}
-                                    />
-                                </div>
-
-                                {image && <img src={preview} alt="profile preview" className="course-thumbnail" />}
                             </div>
                             <button 
                                 onClick={handleRemoveShareholder(idx)} 
                                 className="delete-test-button"
                             >Delete Test Question</button>
-                        </div>
+                        </div> 
                     ))
 
                     }
 
-                    <button 
-                        onClick={handleAddShareholder} 
-                        className="add-test-button"
-                    >Add Question</button>
-
-                    <div className="upload-test-button-container">
+                    <div className="item">
                         <button 
-                            className="upload-test-button"
-                            type="submit"
-                        >Upload Test Question</button>
+                            onClick={handleAddShareholder} 
+                        >ADD QUESTION</button>
+
+                        <div>
+                            <button 
+                                type="submit"
+                                className={loading ? "disabled" : ""}
+                                disabled = {loading ? true : false}
+                            >
+                                {loading ? "LOADING.." : "UPLOAD TEST"}
+                            </button>
+                        </div>
                     </div>
+
+                    
                     
                 </form>
 

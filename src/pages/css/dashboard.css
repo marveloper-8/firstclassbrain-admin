@@ -7,6 +7,15 @@
     overflow-x:hidden;
     background:#fff;
 }
+.dashboard .links{
+    text-decoration:none!important;
+    color:#fff;
+}
+
+.dashboard .warning{
+    font-size:10px;
+    color:#f00;
+}
 
 .dashboard .chart{
     background:grey;
@@ -59,7 +68,7 @@
     position:fixed;
     top:0;
     height:100vh;
-    width:25vw;
+    width:30vw;
     transition:.5s ease all;
 }
 .dashboard .close-instructors{
@@ -101,7 +110,7 @@
     grid-template-columns:1fr;
     width:100%;
     height:100vh;
-    background:#dadada;
+    background:#2c2c2c;
     position:absolute;
     top:0;
     right:0;
@@ -122,6 +131,7 @@
 .dashboard .instructors-information-inner .content{
     padding:0 2.5vw;
     overflow-y:scroll;
+    color:#fff;
 }
 /* width */
 .dashboard .instructors-information-inner .content::-webkit-scrollbar {
@@ -141,31 +151,18 @@
 .dashboard .instructors-information-inner .content::-webkit-scrollbar-thumb:hover {
     background: #000; 
 }
-.dashboard .instructors-information-inner .search{
-    display:grid;
-    grid-template-columns:1fr 6fr;
-    border-bottom:2px grey solid;
-    margin:2vh 0;
-}
-.dashboard .instructors-information-inner .search img{
-    font-size:1vw;
-    margin-right:1vw;
-    cursor:pointer;
-    width:50%;
-    position:relative;
-    top:2vh;
-}
-.dashboard .instructors-information-inner .search input{
-    font-size:.9vw;
+.dashboard .instructors-information-inner input.search{
+    font-size:14px;
     padding:.5vh 0!important;
     background:none;
     width:100%;
     margin-bottom:.5vh;
-    border:none;
+    border-bottom:1px #fff solid!important;
+    color:#fff!important;
 }
 .dashboard .instructors-information-inner .instructor-list .columns{
     display:grid;
-    grid-template-columns:1fr 1.5fr;
+    grid-template-columns:1fr 1.5fr .5fr;
     padding:2vh 0;
     border-bottom:1px grey solid;
 }
@@ -175,14 +172,21 @@
     border-radius:4vw;
 }
 .dashboard .instructors-information-inner .instructor-list .name{
-    font-size:.9vw;
+    font-size:10px;
     font-weight:bold;
     color:teal;
     padding-top:.5vh;
 }
 .dashboard .instructors-information-inner .instructor-list .email{
-    font-size:.9vw;
+    font-size:10px;
     padding-top:1vh;
+}
+.dashboard .instructors-information-inner .instructor-list .delete-tab{
+    text-align:right;
+}
+.dashboard .instructors-information-inner .instructor-list .delete-icon{
+    width:15px;
+    cursor:pointer;
 }
 
 .dashboard .instructors-information{
@@ -271,7 +275,7 @@
 
 .dashboard .popup-toggle .inner .close-donate,
 .dashboard .popup .inner .close-donate{
-    padding:0 2vw 4vh 2vw;
+    padding:0 2vw;
     color:#f00;
 }
 .dashboard .popup-toggle .inner .close-donate span,
@@ -290,7 +294,7 @@
 }
 .dashboard .popup-toggle .inner .content .text,
 .dashboard .popup .inner .content .text{
-    font-size:1.2vw;
+    font-size:14px;
     text-align:left;
     padding:0 1.5vw;
     color:#000;
@@ -299,7 +303,9 @@
 
 .dashboard .popup-toggle .inner .content .text .title,
 .dashboard .popup .inner .content .text .title{
-    margin-bottom:3vh;
+    margin:4vh 0 2vh 0;
+    font-size:30px;
+    padding:0;
 }
 
 .dashboard .popup-toggle .inner .content .text .input,
@@ -343,7 +349,7 @@
     padding:0 1vw;
     border:none;
     outline:none;
-    font-size:.85vw;
+    font-size:10px;
     background:none;
 }
 .dashboard .popup-toggle .inner .content .text .preview-picture,
@@ -355,15 +361,20 @@
 }
 .dashboard .popup-toggle .inner .content .text button,
 .dashboard .popup .inner .content .text button{
-    padding:1.5vh 0;
+    padding:2vh 0;
     text-align:center;
     width:100%;
     background:teal;
     border-radius:5px;
     border:none;
     color:#fff;
-    font-size:.85vw;
+    font-size:10px;
     cursor:pointer;
+}
+.dashboard .popup-toggle .inner .content .text button.disabled,
+.dashboard .popup .inner .content .text button.disabled{
+    background:rgb(129, 167, 167);
+    transition:.5s ease-in-out all;
 }
 .dashboard .popup-toggle .inner .content .extras,
 .dashboard .popup .inner .content .extras{
@@ -531,7 +542,6 @@
         grid-template-columns:1fr;
         width:100%;
         height:100vh;
-        background:#dadada;
         position:absolute;
         top:0;
         right:0;
@@ -589,7 +599,7 @@
     }
     .dashboard .instructors-information-inner .instructor-list .columns{
         display:grid;
-        grid-template-columns:1fr 3fr;
+        grid-template-columns:1fr 2fr .5fr;
         padding:2vh 0;
         border-bottom:1px grey solid;
     }
@@ -792,14 +802,6 @@
     .dashboard .popup-toggle .inner .content .text button,
     .dashboard .popup .inner .content .text button{
         padding:1.5vh 0;
-        text-align:center;
-        width:100%;
-        background:teal;
-        border-radius:5px;
-        border:none;
-        color:#fff;
-        font-size:2.5vw;
-        cursor:pointer;
     }
     .dashboard .popup-toggle .inner .content .extras,
     .dashboard .popup .inner .content .extras{

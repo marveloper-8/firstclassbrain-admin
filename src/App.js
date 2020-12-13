@@ -4,6 +4,8 @@ import React, {
   useContext,
   useEffect
 } from 'react';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   BrowserRouter as Router,
@@ -23,11 +25,12 @@ import Courses from './pages/Courses'
 import AddCourse from './pages/AddCourse'
 import Topics from './pages/Students'
 import CourseDetails from './pages/CourseDetails'
-import Instructors from './pages/Instructors'
 import Tests from './pages/Tests'
 import Students from './pages/Students'
+import StudentData from './pages/StudentData'
 import AddTest from './pages/AddTest'
 import TestQuestions from './pages/TestQuestions'
+import TestImageUpdate from './pages/TestImageUpdate'
 
 import {reducer, initialState} from './reducers/userReducer'
 
@@ -57,11 +60,12 @@ const Routing = () => {
           <Route path='/add-course' component={AddCourse} />
           <Route path='/topics' component={Topics} />
           <Route path='/course-details/:postId' component={CourseDetails} />
-          <Route path='/instructors' component={Instructors} />
           <Route path='/tests' component={Tests} />
           <Route path='/students' component={Students} />
+          <Route path='/student-info/:studentId' component={StudentData} />
           <Route path='/add-test' component={AddTest} />
           <Route path='/test-questions/:testId' component={TestQuestions} />
+          <Route path='/test-image-upload/:testId' component={TestImageUpdate} />
     </Switch>
   )
 }
@@ -72,6 +76,7 @@ function App() {
     <div className="App">
       <UserContext.Provider value={{state, dispatch}}>
         <Router>
+          <ToastContainer className="toaster" />
           <Routing />
         </Router>
       </UserContext.Provider>

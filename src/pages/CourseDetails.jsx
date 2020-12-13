@@ -1,6 +1,7 @@
-import React, {useState, useEffect, useCallback} from 'react'
+import React, {useState, useEffect, useCallback, useContext} from 'react'
 import {useParams, Link, useHistory} from 'react-router-dom'
-import M from 'materialize-css'
+import { toast } from 'react-toastify';
+import {UserContext} from '../App'
 
 import Footer from './Footer'
 import Navigation from './Navigation'
@@ -13,11 +14,26 @@ import courses from '../icons/courses.svg'
 import pdf from '../icons/pdf.svg'
 
 function Terms() {
+    // authentication
+    const history = useHistory()
+    const {dispatch} = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem("admin"))
+
+    useEffect(() => {
+      if(user){
+        dispatch({type: "USER", payload: user})
+      } else{
+        history.push('/authentication')
+      }
+    }, [])
+    // authentication end
+
     const {postId} = useParams()
     console.log(postId)
 
     const [postDetails, setPostDetails] = useState([])
 
+    // course details
     useEffect(() => {
         fetch(`https://firstclassbrain-server.herokuapp.com/course-details/${postId}`, {
             headers: {
@@ -31,7 +47,20 @@ function Terms() {
             })
     }, [postId])
 
-    const history = useHistory()
+    
+
+    const deletePost = postId => {
+        setLoading(true)
+        fetch(`https://firstclassbrain-server.herokuapp.com/delete-post/${postId}`, {
+            method: "delete",
+        }).then(res => res.json())
+        .then(result => {
+            console.log(result)
+            toast.dark("Delete successful")
+            history.push('/courses')
+        })
+    }
+
     const [loading, setLoading] = useState(false)
     // const [loading, setLoading] = useState(false)
     
@@ -49,6 +78,9 @@ function Terms() {
     
     const [video, setVideo] = useState()
     const [videoPreview, setVideoPreview] = useState()
+    
+    const [pdf, setPdf] = useState()
+    const [pdfPreview, setPdfPreview] = useState()
 
     // create a preview as a side effect, whenever selected file is changed
     useEffect(() => {
@@ -120,6 +152,20 @@ function Terms() {
         return () => URL.revokeObjectURL(objectUrl)
     }, [video])
 
+    // create a preview as a side effect, whenever selected file is changed
+    useEffect(() => {
+        if (!pdf) {
+            setPdfPreview(undefined)
+            return
+        }
+
+        const objectUrl = URL.createObjectURL(pdf)
+        setPdfPreview(objectUrl)
+
+        // free memory when ever this component is unmounted
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [pdf])
+
 
 
     const onSelectFile = e => {
@@ -167,12 +213,22 @@ function Terms() {
         // I've kept this example simple by using the first image instead of multiple
         setVideo(e.target.files[0])
     }
+    const onSelectFilePdf = e => {
+        if (!e.target.files || e.target.files.length === 0) {
+            setPdf(undefined)
+            return
+        }
+
+        // I've kept this example simple by using the first image instead of multiple
+        setPdf(e.target.files[0])
+    }
 
     const [url, setUrl] = useState(undefined)
     const [urlTwo, setUrlTwo] = useState(undefined)
     const [urlThree, setUrlThree] = useState(undefined)
     const [urlFour, setUrlFour] = useState(undefined)
     const [urlVideo, setUrlVideo] = useState(undefined)
+    const [urlPdf, setUrlPdf] = useState(undefined)
     
 
     // first image upload
@@ -205,12 +261,12 @@ function Terms() {
         }).then(res => res.json())
             .then(data => {
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Updated first image successfully! Reload to continue.", classes:"#c62828 teal darken-3"})
-                    history.push(`/course-details/${postDetails.post ? postDetails.post._id : "loading"}`)
+                    toast.success("Updated first image successfully!")
+                    history.push(`/courses`)
                 }
             })
             .catch(err => {
@@ -265,12 +321,12 @@ function Terms() {
         }).then(res => res.json())
             .then(data => {
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Updated second image successfully! Reload to continue.", classes:"#c62828 teal darken-3"})
-                    history.push(`/course-details/${postDetails.post ? postDetails.post._id : "loading"}`)
+                    toast.success("Updated second image successfully!")
+                    history.push(`/courses`)
                 }
             })
             .catch(err => {
@@ -325,12 +381,12 @@ function Terms() {
         }).then(res => res.json())
             .then(data => {
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Updated third image successfully! Reload to continue.", classes:"#c62828 teal darken-3"})
-                    history.push(`/course-details/${postDetails.post ? postDetails.post._id : "loading"}`)
+                    toast.success("Updated third image successfully!")
+                    history.push(`/courses`)
                 }
             })
             .catch(err => {
@@ -385,12 +441,12 @@ function Terms() {
         }).then(res => res.json())
             .then(data => {
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Updated fourth image successfully! Reload to continue.", classes:"#c62828 teal darken-3"})
-                    history.push(`/course-details/${postDetails.post ? postDetails.post._id : "loading"}`)
+                    toast.success("Updated fourth image successfully!")
+                    history.push(`/courses`)
                 }
             })
             .catch(err => {
@@ -421,6 +477,7 @@ function Terms() {
         data.append("file",video)
         data.append("upload_preset","ao-estate")
         data.append("cloud_name","josh-equere")
+        setLoading(true)
         fetch("https://api.cloudinary.com/v1_1/josh-equere/video/upload",{
             method:"post",
             body:data
@@ -430,6 +487,7 @@ function Terms() {
            setUrlVideo(data.url)
         })
         .catch(err=>{
+            setLoading(false)
             console.log(err)
         })
     }
@@ -445,12 +503,12 @@ function Terms() {
         }).then(res => res.json())
             .then(data => {
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Updated video successfully! Reload to continue.", classes:"#c62828 teal darken-3"})
-                    history.push(`/course-details/${postDetails.post ? postDetails.post._id : "loading"}`)
+                    toast.success("Updated video successfully!")
+                    history.push(`/courses`)
                 }
             })
             .catch(err => {
@@ -473,6 +531,68 @@ function Terms() {
         }
     }
     // end of video upload
+    
+
+    // pdf upload
+    const uploadPdf = e =>{
+        const data = new FormData()
+        data.append("file",pdf)
+        data.append("upload_preset","ao-estate")
+        data.append("cloud_name","josh-equere")
+        setLoading(true)
+        fetch("https://api.cloudinary.com/v1_1/josh-equere/pdf/upload",{
+            method:"post",
+            body:data
+        })
+        .then(res=>res.json())
+        .then(data=>{
+           setUrlPdf(data.url)
+        })
+        .catch(err=>{
+            setLoading(false)
+            console.log(err)
+        })
+    }
+
+    const pdfUpload = useCallback(() => {
+        setLoading(true)
+        fetch(`https://firstclassbrain-server.herokuapp.com/update-pdf/${postDetails.post ? postDetails.post._id : "loading"}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({pdf: urlPdf})
+        }).then(res => res.json())
+            .then(data => {
+                if(data.error){
+                    toast.error(data.error)
+                    setLoading(false)
+                }
+                else{
+                    toast.success("Updated pdf successfully!")
+                    history.push(`/courses`)
+                }
+            })
+            .catch(err => {
+                setLoading(false)
+                console.log(err)
+            })
+    })
+    
+    useEffect(()=>{
+        if(urlPdf){
+            pdfUpload()
+        }
+    }, [urlPdf])
+
+    const ReplacePdf = e =>{
+        if(pdf){
+            uploadPdf()
+        }else{
+            pdfUpload()
+        }
+    }
+    // end of pdf upload
     
     return (
         <div className="dashboard">
@@ -499,9 +619,14 @@ function Terms() {
                         </div>
                     </section>
 
-                    <iframe className="video" title="video"
-                    src={postDetails.post ? postDetails.post.video : "loading"}
-                    ></iframe>
+                    <video 
+                        className="video" 
+                        title="video"
+                        src={postDetails.post ? postDetails.post.video : "loading"}
+                        controls 
+                    >
+                        Your browser does not support the HTML5 Video element.
+                    </video>
 
                     <div className="input input-file">
                         <span>Upload Video</span>
@@ -527,15 +652,10 @@ function Terms() {
                     <div className="input">
                         <button 
                             onClick={ReplaceVideo}
-                            className="btn waves-effect waves-light #64b5f6 teal darken-1 upload-button"
+                            className={loading ? "disabled" : ""}
+                            disabled = {loading ? true : false}
                         >
-                            {
-                                loading
-                                ?
-                                <i class="fa fa-spinner fa-spin"></i>
-                                :
-                                "UPDATE VIDEO"
-                            }
+                            { loading ? "LOADING.." : "UPDATE VIDEO" }
                         </button>
                     </div>
 
@@ -710,12 +830,20 @@ function Terms() {
                     </div>
 
 
-                    <div className="pdf">
+                    {/* <div className="pdf">
                         <a className="link" href={postDetails.post ? postDetails.post.pdf : "loading"} rel="noopener noreferrer" target="_blank">
                             <img src={pdf} alt="pdf" />
                             Anatomy_and_Microbiology.zip
                         </a>
-                    </div>
+                    </div> */}
+
+                    <button 
+                        onClick={() => deletePost(`${postDetails.post ? postDetails.post._id : "loading"}`)}
+                        className={loading ? "delete-disabled mobile" : "delete mobile"}
+                        disabled = {loading ? true : false}
+                    >
+                        {loading ? "LOADING.." : "DELETE THIS COURSE"}
+                    </button>
                 </div>
 
                 <Footer />

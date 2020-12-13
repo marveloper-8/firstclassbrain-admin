@@ -1,7 +1,7 @@
 import React, {useState, useContext, useEffect} from 'react'
 import {UserContext} from '../App'
 import {useHistory, Link} from 'react-router-dom'
-import M from 'materialize-css'
+import { toast } from 'react-toastify';
 
 import './css/authentication.css'
 
@@ -22,7 +22,7 @@ const Authentication = () => {
     const PostData = (e) => {
         e.preventDefault()
         if(!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-            M.toast({html: "Invalid email", classes:"#c62828 red darken-3"})
+            toast.error("Invalid Email")
             return
         }
         setLoading(true)
@@ -36,14 +36,14 @@ const Authentication = () => {
             .then(data => {
                 console.log(data)
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
                     localStorage.setItem("jwt", data.token)
                     localStorage.setItem("admin", JSON.stringify(data.admin))
                     dispatch({type: "USER", payload: data.admin})
-                    M.toast({html: "Signed in successfully", classes:"#c62828 teal darken-3"})
+                    toast.success("Signed in successfully")
                     history.push('/')
                 }
             })
@@ -61,6 +61,7 @@ const Authentication = () => {
             <div className="image desktop"></div>
 
             <form onSubmit={PostData}>
+
                 <div className="title">Are you an Admin? <span className="teal-background">Login now</span></div>
 
                 <input 
@@ -78,16 +79,11 @@ const Authentication = () => {
                 />
 
                 <button 
+                    disabled={loading ? true : false}
                     type="submit"
-                    className="btn waves-effect waves-light #64b5f6 teal darken-1"
+                    className={loading ? "disabled" : ""}
                 >
-                    {
-                        loading
-                        ?
-                        <i class="fa fa-spinner fa-spin"></i>
-                        :
-                        "LOGIN"
-                    }
+                    {loading ? "LOADING.." : "LOGIN"}
                 </button>
 
                 <div><Link to='/forgot-password' className="extra">Forgot password?</Link></div>

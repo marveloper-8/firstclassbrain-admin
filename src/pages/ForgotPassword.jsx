@@ -1,7 +1,6 @@
-import React, {useState, useContext} from 'react'
-import {UserContext} from '../App'
+import React, {useState} from 'react'
 import {useHistory, Link} from 'react-router-dom'
-import M from 'materialize-css'
+import { toast } from 'react-toastify';
 
 import './css/authentication.css'
 
@@ -15,7 +14,7 @@ const ForgotPassword = () => {
     const PostData = (e) => {
         e.preventDefault()
         if(!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-            M.toast({html: "Invalid email", classes:"#c62828 red darken-3"})
+            toast.error("Invalid Email")
             return
         }
         setLoading(true)
@@ -29,11 +28,11 @@ const ForgotPassword = () => {
             .then(data => {
                 console.log(data)
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Check your email for the reset password link", classes:"#c62828 teal darken-3"})
+                    toast.success("Check your email for your reset password link")
                     history.push('/authentication')
                 }
             })
@@ -61,13 +60,14 @@ const ForgotPassword = () => {
                 />
 
                 <button 
+                    disabled={loading ? true : false}
                     type="submit"
-                    className="btn waves-effect waves-light #64b5f6 teal darken-1"
+                    className={loading ? "disabled" : ""}
                 >
                     {
                         loading
                         ?
-                        <i class="fa fa-spinner fa-spin"></i>
+                        "LOADING.."
                         :
                         "EMAIL ME A LINK"
                     }

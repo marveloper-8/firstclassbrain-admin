@@ -6,7 +6,7 @@ import {
     useParams
 } from 'react-router-dom'
 
-import M from 'materialize-css'
+import { toast } from 'react-toastify';
 
 import './css/authentication.css'
 
@@ -14,6 +14,7 @@ const ForgotPassword = () => {
     const history = useHistory()
     const {token} = useParams()
     const [loading, setLoading] = useState(false)
+    let passwordConfirmation = false
 
     const ResetPassword = (e) => {
         e.preventDefault()
@@ -28,11 +29,11 @@ const ForgotPassword = () => {
             .then(data => {
                 console.log(data)
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 }
                 else{
-                    M.toast({html: "Password changed successfully", classes:"#c62828 teal darken-3"})
+                    toast.success("Check your email for your reset password link")
                     history.push('/authentication')
                 }
             })
@@ -40,15 +41,6 @@ const ForgotPassword = () => {
                 setLoading(false)
                 console.log(err)
             })
-    }
-
-    const NewPassword = e => {
-        e.preventDefault()
-        if(password === confirmPassword){
-            ResetPassword()
-        } else{
-            alert("Password does not match")
-        }
     }
 
     const [password, setPassword] = useState("")
@@ -77,16 +69,26 @@ const ForgotPassword = () => {
 
                 <button 
                     type="submit"
-                    className="btn waves-effect waves-light #64b5f6 teal darken-1"
-                >
-                    {
-                        loading
+                    className={loading ? "disabled" : ""}
+                    disabled={
+                        password != confirmPassword || loading
                         ?
-                        <i class="fa fa-spinner fa-spin"></i>
+                        true
                         :
-                        "RESET PASSWORD"
+                        false
                     }
+                >
+                    { loading ? "LOADING.." : "CREATE NEW PASSWORD"}
                 </button>
+
+                <div className="warning">
+                    {password != confirmPassword ? "Password doesn't match..." : ''}
+                </div>
+                
+                {/* <div className="warning">
+                    {password.length < 10 ? "Password is too short" : ''}
+                </div> */}
+                
 
                 <div><Link to='/authentication' className="extra">Go back to login</Link></div>
             </form>

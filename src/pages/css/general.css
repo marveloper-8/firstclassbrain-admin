@@ -10,7 +10,32 @@
     text-decoration:none;
     cursor:pointer;
 }
-button, select{
+.main-content button{
+    outline:none;
+    padding:2vh 0;
+    text-align:center;
+    width:100%;
+    background:teal;
+    border-radius:5px;
+    border:none;
+    color:#fff;
+    font-size:10px;
+    cursor:pointer;
+    transition:.5s ease-in-out all;
+}
+.main-content button.delete{
+    background:rgb(199, 9, 9);
+    transition:.5s ease-in-out all;
+}
+.main-content button.delete-disabled{
+    background:rgb(91, 15, 15);
+    transition:.5s ease-in-out all;
+}
+.main-content button.disabled{
+    background:rgb(129, 167, 167);
+    transition:.5s ease-in-out all;
+}
+select{
     outline:none;
     cursor:pointer;
 }
@@ -25,7 +50,7 @@ textarea{
     display:none;
 }
 .mobile{
-    display:none;
+    display:none!important;
 }
 
 
@@ -60,7 +85,7 @@ textarea{
     outline:none;
     font-size:1vw;
     border-radius:5px;
-    padding:1vh 1vw;
+    padding:2vh 1vw;
 }
 
 
@@ -150,8 +175,9 @@ textarea{
 .table .courses-filter-columns .search input{
     background:none;
     border:none;
+    font-size:10px;
     outline:none;
-    padding:0!important;
+    padding:1vh 1vw;
     margin:0!important;
 }
 
@@ -274,7 +300,9 @@ textarea{
     cursor:pointer;
 }
 
-
+.add-test-table{
+    padding-bottom:4vh;
+}
 .add-test-table .add-test-filter-columns{
     display:grid;
     grid-template-columns:1fr 1fr 1fr 1fr;
@@ -287,6 +315,16 @@ textarea{
     width:90%!important;
     margin-top:10px;
     border:1px #707070 solid;
+}
+.add-test-table .add-test-filter-columns .tab input[type=number]{
+    border:1px #707070 solid!important;
+    font-size:10px;
+    width:90%;
+}
+.add-test-table .add-test-filter-columns .tab input[type=text]{
+    border:1px #707070 solid!important;
+    font-size:10px;
+    width:90%;
 }
 .add-test-table .add-test-filter-columns .tab input{
     margin-left:1vw;
@@ -340,14 +378,16 @@ textarea{
     color:teal;
     background:teal;
     position:absolute;
+    border:0;
     top:0;
     left:0;
     opacity:0;
-    z-index:10000;
-    width:10vw;
-    height:5vh;
+    z-index:10000000000!important;
+    width:100%;
+    height:5rem;
     cursor:pointer;
     transition:.25s ease-in-out all;
+    font-size:10vw;
 }
 .add-test-table .item .answer-options .tab .select .text{
     z-index:100;
@@ -411,7 +451,7 @@ textarea{
 .add-test-table .delete-test-button{
     background:#f00;
     color:#fff;
-    padding:1.5vh 2vw;
+    padding:2vh 2vw;
     border:none;
     outline:none;
     border-radius:7px;
@@ -449,13 +489,31 @@ textarea{
 .test-questions{
     padding:0 5vw;
 }
+.test-questions .info{
+    display:grid;
+    grid-template-columns:2fr 5fr;
+    font-size:12px;
+    padding:2vh 0 0 0;
+    border-top:1px #707070 solid;
+}
+.test-questions .info .extras{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+}
+.test-questions .info .title{
+    font-size:20px;
+    color:teal;
+    position:relative;
+    top:-1vh;
+}
 .test-questions .add-test-filter-columns .tab select{
     margin-left:1vw;
     padding:1vh .5vw;
     width:90%;
 }
+
 .test-questions button{
-    padding:1vh 1vw;
+    padding:2vh 0;
     background:teal;
     color:#fff;
     font-size:.85vw;
@@ -486,6 +544,7 @@ textarea{
     border-radius:7px;
     margin-bottom:2vh;
     font-size:1vw;
+    min-height:20vh;
 }
 .test-questions .item .answer-options{
     font-size:1vw;
@@ -538,6 +597,7 @@ textarea{
     border-radius:5px;
     margin-bottom:2vh;
     font-size:1vw;
+    min-height:20vh;
 }
 .test-questions .item .correction .media{
     background:grey;
@@ -547,6 +607,9 @@ textarea{
     font-size:1vw;
     border-radius:5px;
     height:30vh;
+}
+.test-questions .item button{
+    margin-top:2vh;
 }
 
 
@@ -600,38 +663,17 @@ textarea{
 
 .students-data-container {
     display:grid;
-    grid-template-columns:1fr 1fr 1fr;
+    grid-template-columns:1fr;
     width:85%;
     margin:0 auto 10vh auto;
-    height:80vh;
     box-shadow: 0px 0px 10px #00000024;
     padding:0;
     background:#ffff;
 }
 .students-data-container .table{
-    overflow-y:scroll;
     height:100%;
     border:none;
     overflow-x:hidden;
-    border-right:1px #707070 solid;
-}
-/* width */
-.students-data-container .table::-webkit-scrollbar {
-    width: 3px;
-    height:7.5px;
-}
-/* Track */
-.students-data-container .table::-webkit-scrollbar-track {
-    background:none;
-}
-/* Handle */
-.students-data-container .table::-webkit-scrollbar-thumb {
-    background: grey; 
-    border-radius: 10px;
-}
-/* Handle on hover */
-.students-data-container .table::-webkit-scrollbar-thumb:hover {
-    background: #000; 
 }
 .students-data-container .table .filter-columns{
     display:grid;
@@ -649,14 +691,18 @@ textarea{
 .students-data-container .table .columns{
     padding:3vh 1vw;
     display:grid;
-    grid-template-columns:1fr 4fr 1.5fr 1.5fr;
+    grid-template-columns:.5fr 2fr 2fr 1fr 1fr .5fr .5fr .5fr .5fr;
     border-bottom:1px #707070 solid;
     border-top:none;
 }
+.students-data-container .table .columns .links{
+    color:green;
+    font-weight:bold;
+}
 .students-data-container .table .columns .image{
-    width:4vw;
-    height:4vw;
-    border-radius:4vw;
+    width:40px;
+    height:40px;
+    border-radius:40px;
 }
 .students-data-container .table .columns .tab{
     padding-left:1vw;
@@ -666,6 +712,9 @@ textarea{
     color:rgb(150, 110, 110);
     margin-bottom:1vh;
     font-size:1vw;
+}
+.students-data-container .table .columns .tab img{
+    width:20px;
 }
 
 .students-data-container .table .columns .tab button{
@@ -677,84 +726,6 @@ textarea{
     color:#fff;
     border-radius:7px;
     cursor:pointer;
-}
-
-.students-data-container .profile-container{
-    padding:4vh 2.5vw;
-    border-right:1px #707070 solid;
-    text-align:center;
-}
-.students-data-container .profile-container .profile-image{
-    width:10vw;
-    height:10vw;
-    border-radius:10vw;
-    background:grey;
-    margin:0 auto 2vh auto;
-}
-.students-data-container .profile-container .name{
-    font-size:1.25vw;
-    font-weight:bolder;
-    color:teal;
-    margin-bottom:1vh;
-}
-.students-data-container .profile-container .widgets{
-    padding:0vh 5vw;
-    border-top:1px #707070 solid;
-    margin-top:2vh;
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr 1fr;
-    text-align:center;
-}
-.students-data-container .profile-container .text{
-    font-size:1vw;
-}
-.students-data-container .profile-container .widgets div{
-    text-align:center;
-    margin:0!important;
-    padding:0!important;
-}
-.students-data-container .profile-container .widgets img{
-    width:60%;
-    cursor:pointer;
-    margin:0!important;
-    padding:0!important;
-}
-.students-data-container .profile-container .actions{
-    border-top:1px #707070 solid;
-    padding-top:3vh;
-}
-.students-data-container .profile-container .actions button{
-    display:block;
-    padding:1vh 0;
-    border-radius:3px;
-    font-size:.85vw;
-    text-align:center;
-    width:100%;
-    margin-bottom:1vh;
-    color:#fff;
-    outline:none;
-}
-.students-data-container .profile-container .actions button.gift{
-    background:teal;
-    border:2px teal solid;
-    transition:.25s ease-in-out all;
-}
-.students-data-container .profile-container .actions button.delete{
-    background:#f00;
-    border:2px #f00 solid;
-    transition:.25s ease-in-out all;
-}
-.students-data-container .profile-container .actions button.gift:hover{
-    color:teal;
-    background:#fff;
-    transition:.25 ease-in-out all;
-    border:2px teal solid;
-}
-.students-data-container .profile-container .actions button.delete:hover{
-    color:#f00;
-    background:#fff;
-    transition:.25 ease-in-out all;
-    border:2px #f00 solid;
 }
 
 .students-data-container .message-container{
@@ -863,9 +834,10 @@ textarea{
     margin-bottom:2vh;
 }
 .course-details-content .course-thumbnail{
-    width:5vw;
-    height:5vw;
-    border-radius:5vw;
+    width:100px;
+    height:100px;
+    border-radius:100px;
+    margin-bottom:40px;
 }
 .course-details-content .course-thumbnail-preview{
     width:95%;
@@ -883,12 +855,11 @@ textarea{
     padding-right:3.5vw;
 }
 .course-details-content .head .button-container button{
-    padding:1vh 1vw;
+    padding:2vh 2vw;
     background:teal;
     color:#fff;
-    font-size:.85vw;
     border-radius:3px;
-    width:none;
+    width:auto;
     outline:none;
     border:none;
 }
@@ -991,7 +962,6 @@ textarea{
 }
 .courses-table .form .input .upload-button{
     background:teal;
-    font-size:1vw;
     text-align:center;
     width:100%;
     border:none;
@@ -1094,11 +1064,10 @@ textarea{
 .popup-toggle .instructors-inner .form .input span{
     color:#fff;
 }
-.popup-toggle .instructors-inner .form .input .upload-button{
+.popup-toggle .instructors-inner .form button{
     background:teal;
-    font-size:1vw;
     text-align:center;
-    padding:2vh 0;
+    padding:0!important;
     width:100%;
     border:none;
     color:#fff;
@@ -1193,7 +1162,10 @@ textarea{
 /* mobile version */
 @media screen and (max-width:600px){
     .desktop-hide{
-        display:none;
+        display:none!important;
+    }
+    .desktop{
+        display:none!important;
     }
     .App{
         position:absolute;
@@ -1202,6 +1174,9 @@ textarea{
         width:100vw;
         /* overflow-x:hidden; */
         height:auto;
+    }
+    .mobile{
+        display:block!important;
     }
     .link{
         text-decoration:none;
@@ -1353,7 +1328,7 @@ textarea{
     .table .columns{
         padding:1vh 1.5vw;
         display:grid;
-        grid-template-columns:4fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns:2fr 1fr 1fr 1fr 1fr;
         border-top:1px #707070 solid;
         font-size:.8vw;
         color:#707070;
@@ -1361,7 +1336,7 @@ textarea{
     .courses-table .columns{
         padding:2vh 1.5vw;
         display:grid;
-        grid-template-columns:4fr 1.5fr 1fr 1fr 1fr 1fr 1fr;
+        grid-template-columns:2fr 1fr 1fr 1fr 1fr;
         border-top:1px #707070 solid;
         font-size:2.5vw;
         color:#707070;
@@ -1452,7 +1427,7 @@ textarea{
     .table-tests .columns{
         padding:3vh 1vw;
         display:grid;
-        grid-template-columns:4fr 1.5fr 1fr 1fr 1fr 1fr 1.5fr 1.5fr;
+        grid-template-columns:1fr 1fr 1fr 1fr 1fr 1fr;
         border-top:1px #707070 solid;
         font-size:2.5vw;
         color:#707070;
@@ -1483,15 +1458,25 @@ textarea{
         grid-template-columns:1fr;
         border:none;
         padding:0;
+        text-align:center;
+        padding-bottom:2vh;
     }
     .add-test-table .add-test-filter-columns .tab select{
         margin-left:1vw;
         padding:1vh .5vw;
         width:95%;
     }
+    .add-test-table .add-test-filter-columns .tab input[type=number]{
+        border:1px #707070 solid!important;
+        font-size:10px;
+        width:85%!important;
+    }
     .add-test-table .item{
         border-top:1px #707070 solid;
         padding:2vh 3vw;
+    }
+    .add-test-table .item button{
+        margin-bottom:2vh;
     }
     .add-test-table .item .number{
         font-size:3vw;
@@ -1505,7 +1490,7 @@ textarea{
         background: #F6F5F5 0% 0% no-repeat padding-box;
         border:none;
         border-radius:7px;
-        height:30vh;
+        height:40vh!important;
         font-size:2.5vw;
         margin-bottom:2vh;
     }
@@ -1579,6 +1564,7 @@ textarea{
         outline:none;
         border-radius:7px;
         font-size:2.5vw;
+        margin-bottom:2vh!important;
     }
     .add-test-table .upload-test-button-container{
         padding:1vh 3vw 5vh 3vw;
@@ -1607,7 +1593,7 @@ textarea{
         width:90%;
     }
     .test-questions button{
-        padding:1vh 1vw;
+        padding:2vh 0;
         background:teal;
         color:#fff;
         font-size:2.5vw;
@@ -1622,6 +1608,16 @@ textarea{
         border-top:1px #707070 solid;
         padding:2vh 3vw;
         width:90%;
+    }
+    .test-questions .info{
+        display:grid;
+        grid-template-columns:1fr;
+        font-size:12px;
+        padding:2vh 0 0 0;
+        border-top:1px #707070 solid;
+    }
+    .test-questions .info .extras{
+        padding-bottom:2vh;
     }
     .test-questions .item .number{
         font-size:2.5vw;
@@ -1651,9 +1647,10 @@ textarea{
     }
     .test-questions .item .answer-options .tab .label{
         background: #F6F5F5 0% 0% no-repeat padding-box;
-        padding:1vh 2vw;
+        padding:2vh 2vw;
         border-radius:7px;
-        width:95%;
+        width:90%;
+        border-left:10px teal solid;
     }
     .test-questions .item .answer-options .tab .label input{
         width:95%;
@@ -1794,7 +1791,7 @@ textarea{
     .students-data-container .table .columns{
         padding:3vh 1vw;
         display:grid;
-        grid-template-columns:1fr 4fr 1.5fr 1.5fr;
+        grid-template-columns:1fr 4fr;
         border-bottom:1px #707070 solid;
         border-top:none;
     }
@@ -1833,6 +1830,53 @@ textarea{
     .students-data-container .message-container .void{
         color:#707070;
         font-size:1.25vw;
+    }
+
+    .profile-container{
+        padding:0 10vw;
+        text-align:center;
+    }
+    .profile-container .profile-image{
+        width:150px;
+        height:150px;
+        border-radius:150px;
+        background:grey;
+        margin:0 auto 2vh auto;
+    }
+    .profile-container .name{
+        font-size:25px;
+        font-weight:bolder;
+        color:teal;
+        margin-bottom:1vh;
+    }
+    .profile-container .widgets{
+        padding:2vh 5vw;
+        border-top:1px #707070 solid;
+        margin-top:2vh;
+        display:grid;
+        grid-template-columns:1fr 1fr 1fr 1fr;
+        text-align:center;
+    }
+    .profile-container .text{
+        font-size:12px;
+    }
+    .profile-container .widgets div{
+        text-align:center;
+        margin:0!important;
+        padding:0!important;
+    }
+    .profile-container .widgets img{
+        width:40%;
+        cursor:pointer;
+        margin:0!important;
+        padding:0!important;
+    }
+    .profile-container .actions{
+        border-top:1px #707070 solid;
+        padding-top:3vh;
+    }
+    .profile-container .actions button{
+        margin-bottom:2vh;
     }
     
     
@@ -1943,7 +1987,7 @@ textarea{
         padding:2vh 3.5vw 0 0;
     }
     .course-details-content .head .button-container button{
-        padding:1vh 1vw;
+        padding:2vh 1vw;
         background:teal;
         color:#fff;
         font-size:2.5vw;

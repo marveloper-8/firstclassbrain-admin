@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect, useContext} from 'react'
+import {Link, useHistory} from 'react-router-dom'
+import { toast } from 'react-toastify';
+import {UserContext} from '../App'
 // components
 import Footer from './Footer'
 import Navigation from './Navigation'
@@ -19,6 +21,20 @@ import weeks from '../data/weeks.json'
 import tests from '../data/tests.json'
 
 function Terms() {
+    // authentication
+    const history = useHistory()
+    const {dispatch} = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem("admin"))
+
+    useEffect(() => {
+      if(user){
+        dispatch({type: "USER", payload: user})
+      } else{
+        history.push('/authentication')
+      }
+    }, [])
+    // authentication end
+
     useEffect(()=>{
         fetch('https://firstclassbrain-server.herokuapp.com/all-courses', {
             headers: {
@@ -49,14 +65,11 @@ function Terms() {
         }).then(res => res.json())
         .then(result => {
             console.log(result)
-            alert("Delete successfully. Reload page to continue")
-            // const newData = data.filter(item => {
-            //     return item._id !== result._id
-            // })
-            // setData(newData)
+            toast.dark("Delete successful")
+            history.push('/tests')
         })
     }
-
+    
     const [data, setData] = useState([])
     const [topics, setTopics] = useState([])
 
@@ -275,47 +288,51 @@ function Terms() {
                             }
 
                             return(
-                                
-                                <div className="columns">
-                                    <div className="tab">
-                                        {
-                                            topics.map(topicsItem => {
-                                                return(
-                                                    <span className={topicsItem._id === item.topic ? "" : "disappear"}>{topicsItem.courseTitle}</span> 
-                                                )
-                                            })
-                                        }
-                                    </div>
-                                    <div className="tab">{compsClass}</div>
-                                    <div className="tab">{compsTerm}</div>
-                                    <div className="tab">{compsWeek}</div>
-                                    <div className="tab">
-                                        <span className="desktop-hide">
+                                <>
+                                      
+                                    <Link className="link mobile" to={'/test-questions/' + item._id}>  
+                                    <div className="columns">
+                                        <div className="tab">{item.title}</div>
+                                        <div className="tab">{compsClass}</div>
+                                        <div className="tab">{compsTerm}</div>
+                                        <div className="tab">{compsWeek}</div>
+                                        <div className="tab">
                                             {compsType}
-                                        </span>
-                                        {item.type}
+                                        </div>
+                                        <div className="tab">{item.subject}</div>
                                     </div>
-                                    <div className="tab">{item.subject}</div>
-                                    <div className="tab button">
-                                        <Link className="link" to={'/test-questions/' + item._id}>
+                                    </Link>
+                                    
+                                    <div className="columns desktop">
+                                        <div className="tab">{item.title}</div>
+                                        <div className="tab">{compsClass}</div>
+                                        <div className="tab">{compsTerm}</div>
+                                        <div className="tab">{compsWeek}</div>
+                                        <div className="tab">
+                                            {compsType}
+                                        </div>
+                                        <div className="tab">{item.subject}</div>
+                                        <div className="tab button desktop">
+                                            <Link className="link" to={'/test-questions/' + item._id}>
+                                                <img 
+                                                    className="columns-icon mobile-head" 
+                                                    src={viewIcon} 
+                                                    alt="view" 
+                                                />
+                                            </Link>
+                                            
+                                        </div>
+                                        <div className="tab button desktop">
                                             <img 
                                                 className="columns-icon mobile-head" 
-                                                src={viewIcon} 
-                                                alt="view" 
+                                                src={deleteIcon} 
+                                                alt="delete" 
+                                                onClick={() => deletePost(item._id)}
                                             />
-                                        </Link>
-                                        
+                                        </div>
                                     </div>
-                                    <div className="tab button">
-                                        <img 
-                                            className="columns-icon mobile-head" 
-                                            src={deleteIcon} 
-                                            alt="delete" 
-                                            onClick={() => deletePost(item._id)}
-                                        />
-                                    </div>
-                                </div>
-                
+                    
+                                </>
                             )
                         })
                     }

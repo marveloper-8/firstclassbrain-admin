@@ -194,9 +194,9 @@
         padding:2.5vh 4vw;
     }
     .navigation .profile-picture{
-        width:3vh;
-        height:3vh;
-        border-radius:3vh;
+        width:35px;
+        height:35px;
+        border-radius:35px;
         float:left;
         border:2px rgb(8, 169, 169) solid;
         z-index:1000;
@@ -227,7 +227,7 @@
         text-align:center;
     }
     .navigation .title img{
-        width:3vh;
+        width:30px;
         margin-right:.5vw;
     }
     .navigation .logout{
@@ -239,7 +239,7 @@
         text-align:right;
     }
     .navigation .logout img{
-        width:3vh;
+        width:30px;
         cursor:pointer;
     }
     

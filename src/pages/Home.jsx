@@ -1,20 +1,23 @@
-import React, {useState, useEffect, useContext} from 'react'
+import React, {useState, useEffect, useContext, useCallback} from 'react'
+import {Chart} from 'react-charts'
 import {UserContext} from '../App'
 import {Link, useHistory} from 'react-router-dom'
-import M from 'materialize-css'
-
+import { toast } from 'react-toastify';
+// components
+import useChartConfig from './components/charts/useChartConfig'
+import Box from './components/charts/Box'
+import SyntaxHighlighter from './components/charts/SyntaxHighlighter'
 import Footer from './Footer'
 import Navigation from './Navigation'
-
+// css
 import './css/general.css'
 import './css/dashboard.css'
 import './css/navigation.css'
-
+// icons
+import deleteIcon from '../icons/delete.svg'
 import dashboard from '../icons/dashboard.svg'
-import search_icon from '../icons/search.svg'
 import emailIcon from '../icons/email.svg'
 import phoneIcon from '../icons/call-two.svg'
-import passwordIcon from '../icons/password.svg'
 import pictureIcon from '../icons/picture.svg'
 import userIcon from '../icons/user.svg'
 
@@ -44,16 +47,26 @@ function Terms() {
     const [instructors, setInstructors] = useState(false)
     const [createInstructors, setCreateInstructors] = useState(false)
 
-    const [firstName, setFirstName] = useState("First Name")
-    const [lastName, setLastName] = useState("Last Name")
-    const [email, setEmail] = useState("Email")
+    // random password
+    const randomPassword = (length) => {
+        var result           = '';
+        var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/';
+        var charactersLength = characters.length;
+        for ( var i = 0; i < length; i++ ) {
+           result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+     }
+    // random password end
+
+    const [firstName, setFirstName] = useState("FirstName")
+    const [lastName, setLastName] = useState("LastName")
+    const [email, setEmail] = useState("user@email.com")
     const [phone, setPhone] = useState("Phone")
-    const [password, setPassword] = useState("Password")
-    const [confirmPassword, setConfirmPassword] = useState("")
-    const originalPassword = password
+    const [password] = useState(randomPassword(15))
+    const [originalPassword] = useState(password)
 
     const [url, setUrl] = useState(undefined)
-
     
     const [image, setImage] = useState()
     const [preview, setPreview] = useState()
@@ -104,9 +117,9 @@ function Terms() {
         setSideNav(!sideNav)
     }
 
-    const uploadFields = () => {
+    const uploadFields = useCallback(() => {
         if(!/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)){
-            alert("invalid email")
+            toast.error("Invalid email")
             return
         }
         setLoading(true)
@@ -127,29 +140,30 @@ function Terms() {
         }).then(res => res.json())
             .then(data => {
                 if(data.error){
-                    M.toast({html: data.error, classes:"#c62828 red darken-3"})
+                    toast.error(data.error)
                     setLoading(false)
                 } else{
-                    M.toast({html: "Password changed successfully", classes:"#c62828 teal darken-3"})
-                    history.push('/')
+                    toast.success("Instructor created successfully")
+                    history.push('/courses')
                 }
             })
             .catch(err => {
                 setLoading(false)
                 console.log(err)
             })
-    }
+    })
+    
+    useEffect(()=>{
+        if(url){
+            uploadFields()
+        }
+    }, [])
     const PostSignup = (e) =>{
         e.preventDefault()
-        if (password == confirmPassword){
-            if(image){
-                uploadPic()
-            }else{
-                uploadFields()
-            }
-        } else{
-            M.toast({html: "Password does not match", classes:"#c62828 red darken-3"})
-            setLoading(false)
+        if(image){
+            uploadPic()
+        }else{
+            uploadFields()
         }
         
     }
@@ -202,6 +216,53 @@ function Terms() {
                 setTests(result.tests)
             })
     },[])
+
+    const [searchInstructors, setSearchInstructors] =  useState("")
+
+    const deleteInstructor = postId => {
+        fetch(`https://firstclassbrain-server.herokuapp.com/delete-instructor/${postId}`, {
+            method: "delete",
+        }).then(res => res.json())
+        .then(result => {
+            console.log(result)
+            toast.dark("Deleted successfully")
+            history.push('/authentication')
+        })
+    }
+
+    const instructorCount = 6
+
+    const chartData = React.useMemo(
+        () => [
+            // {
+            // label: 'Users and Items',
+            // data: [
+            //     [0, instructor.length], 
+            //     [1, student.length], 
+            //     [2, data.length], 
+            //     [3, tests.length]
+            // ]}
+                    
+            [
+                [1, 3], 
+                [2, instructorCount], 
+                [3, 1], 
+                [4, 5]
+            ],
+        ],
+        []
+    )
+
+    
+
+    const axes = React.useMemo(
+        () => [
+            { primary: true, type: 'linear', position: 'bottom' },
+            { type: 'linear', position: 'left' }
+        ],
+        []
+    )
+
     
     return (
         <div className="dashboard">
@@ -212,11 +273,17 @@ function Terms() {
 
                 <div className="content">
                     <div className="head">Student Attendance</div>
-                    <div className="chart" onClick={() => openSideNav}></div>
+                    <div className="chart">
+                        <Chart 
+                            data={chartData} 
+                            axes={axes}
+                            tooltip
+                        />
+                    </div>
                 </div>
                 
                 <div className="content">
-                    <div className="head">Instructor's Information</div>
+                    <div className="head">Admin's Information</div>
                     <div className="information">
                         <Link className="link" to='/students'>
                         <div className="tab">
@@ -259,11 +326,21 @@ function Terms() {
                             &times;
                         </span>
                         <button className="add-instructors" onClick={() => setCreateInstructors(!createInstructors)}>+ ADD INSTRUCTOR</button>
-                        <div className="search">
-                            <img src={search_icon} alt="search" />
-
-                            <input type="text" className="search" />
-                        </div>
+                        <input type="search" 
+                            onChange={e => {
+                                const test = instructor.filter(item => {
+                                  return item.toString().toLowerCase().includes(e.target.value.toLowerCase());
+                                });
+                                console.log("test: ", test);
+                      
+                                // uncomment line below and teams is logged as I want
+                                setInstructor(test);
+                                setSearchInstructors(e.target.value);
+                            }}
+                            value={searchInstructors}
+                            className="search" 
+                            placeholder="Search by first name..."
+                        />
 
                         <div className="instructor-list">
                             {
@@ -284,8 +361,23 @@ function Terms() {
                                                     {item.firstName} {item.lastName}
                                                 </div>
                                                 <div className="email">
-                                                    {item.email} | {item.phone}
+                                                    <a className="links" href={`mailto:${item.email}`}>
+                                                        {item.email}
+                                                    </a>
+                                                    &nbsp; | &nbsp; 
+                                                    <a className="links" href={`tel:0${item.phone}`}>
+                                                        0{item.phone}
+                                                    </a>
                                                 </div>
+                                            </div>
+
+                                            <div className="delete-tab">
+                                                <img 
+                                                    className="delete-icon" 
+                                                    src={deleteIcon} 
+                                                    alt="delete" 
+                                                    onClick={() => deleteInstructor(item._id)}
+                                                />
                                             </div>
                                         </div>   
                                     )
@@ -308,9 +400,7 @@ function Terms() {
 
                     <div className="content">
                         <form className="text" onSubmit={PostSignup}>
-                            <h1 className="title">SIGN UP AN INSTRUCTOR</h1>
-
-                            <input type="text" value={originalPassword} />
+                            <h1 className="title">CREATE AN INSTRUCTOR</h1>
 
                             <div className="input">
                                 <img src={userIcon} alt="first name" />
@@ -370,40 +460,32 @@ function Terms() {
 
                             {image && <img src={preview} alt="profile preview" className="preview-picture" />}
 
-                            <div className="input">
-                                <img src={passwordIcon} alt="password" />
-                                <input 
-                                    type="password" 
-                                    placeholder="Password" 
-                                    value={password}
-                                    onChange={(e) => setPassword(e.target.value)}
-                                    required 
-                                />
-                            </div>
-
-                            <div className="input">
-                                <img src={passwordIcon} alt="password" />
-                                <input 
-                                    type="password" 
-                                    placeholder="Confirm Password" 
-                                    value={confirmPassword}
-                                    onChange={(e) => setConfirmPassword(e.target.value)}
-                                    required 
-                                />
-                            </div>
-
                             <button 
                                 type="submit"
-                                className="btn waves-effect waves-light #64b5f6 teal darken-1"
+                                className={ loading || phone.length != 11 || isNaN(phone) ? "disabled" : "" }
+                                disabled = { loading || phone.length != 11 || isNaN(phone) ? true : false }
                             >
-                                {
-                                    loading
-                                    ?
-                                    <i class="fa fa-spinner fa-spin"></i>
-                                    :
-                                    "CREATE ACCOUNT"
-                                }
+                                { loading ? "LOADING.." : "CREATE ACCOUNT" }
                             </button>
+                            <div className="warning">
+                                {
+                                    phone.length == 11
+                                    ?
+                                    ""
+                                    :
+                                    "Phone number must be eleven (11) digits"
+                                }
+                            </div>
+                            <div className="warning">
+                                {
+                                    isNaN(phone)
+                                    ?
+                                    "Must be a valid phone number starting with 0 (zero)"
+                                    :
+                                    ""
+                                }
+                            </div>
+                            
                         </form>
                     </div>
                 </div>

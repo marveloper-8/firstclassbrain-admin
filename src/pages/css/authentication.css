@@ -6,6 +6,22 @@
     left:0;
     width:100vw;
     height:100vh;
+
+}
+.authentication button{
+    padding:2vh 2vw;
+    text-align:center;
+    background:teal;
+    border-radius:5px;
+    border:none;
+    color:#fff;
+    font-size:10px;
+    cursor:pointer;
+    transition:.5s ease-in-out all;
+}
+.authentication button.disabled{
+    background:rgb(129, 167, 167);
+    transition:.5s ease-in-out all;
 }
 .authentication .image{
     background:teal;
@@ -24,10 +40,10 @@
     display:block;
     margin-top:4vh;
     width:80%;
-    padding:2vh 1vw;
+    padding:2vh 1vw!important;
     font-size:.9vw;
     border:none;
-    border-bottom:1px #bbb solid;
+    border-bottom:1px #bbb solid!important;
     outline:none;
     transition:.5s ease-in-out all;
 }
@@ -36,9 +52,13 @@
     transition:.5s ease-in-out all;
 }
 .authentication .extra{
-    font-size:.85vw;
+    font-size:10px;
     color:teal;
-    padding-top:2vh;
+    margin-top:2vh;
+}
+.authentication .warning{
+    font-size:10px;
+    color:#f00;
 }
 
 /* breakkkk */
@@ -60,6 +80,22 @@
         left:0;
         width:100vw;
         height:100vh;
+    }
+    .authentication button{
+        padding:2vh 5vw;
+        text-align:center;
+        background:teal;
+        border-radius:5px;
+        border:none;
+        color:#fff;
+        font-size:10px;
+        cursor:pointer;
+        margin:20px 0;
+        transition:.5s ease-in-out all;
+    }
+    .authentication button.disabled{
+        background:rgb(129, 167, 167);
+        transition:.5s ease-in-out all;
     }
     .authentication form{
         padding:10vh 7.5vw;
@@ -89,6 +125,6 @@
     .authentication .extra{
         font-size:2.5vw;
         color:teal;
-        padding-top:6vh;
+        margin-top:6vh;
     }
 }

@@ -1,4 +1,7 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
+import {useParams, useHistory} from 'react-router-dom'
+import { toast } from 'react-toastify';
+import {UserContext} from '../App'
 // components
 import Footer from './Footer'
 import Navigation from './Navigation'
@@ -7,111 +10,157 @@ import './css/general.css'
 import './css/dashboard.css'
 import './css/navigation.css'
 // icons
-import user from '../icons/user.svg'
+import userIcon from '../icons/user.svg'
 import video_call from '../icons/video-call.svg'
 import text_message from '../icons/text-message.svg'
-import phone_svg from '../icons/phone-svg.svg'
-import email_svg from '../icons/email-svg.svg'
+import phone_svg from '../icons/phone.svg'
+import email_svg from '../icons/email.svg'
 // data
 import classes from '../data/classes.json'
 
 function Terms() {
-    const [data, setData] = useState([])
-    let firstName = "Student"
-    let lastName = "Name"
-    let email = "student@email.com"
-    let phone = "0900-XXX-XXXX"
-    let classSelected = "Student Class"
+    // authentication
+    const history = useHistory()
+    const {dispatch} = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem("admin"))
 
-    useEffect(()=>{
-        fetch('https://firstclassbrain-server.herokuapp.com/all-student', {
+    useEffect(() => {
+      if(user){
+        dispatch({type: "USER", payload: user})
+      } else{
+        history.push('/authentication')
+      }
+    }, [])
+    // authentication end
+
+    const {studentId} = useParams()
+    console.log(studentId)
+
+    const [studentDetails, setStudentDetails] = useState([])
+
+    // course details
+    useEffect(() => {
+        fetch(`https://firstclassbrain-server.herokuapp.com/student-details/${studentId}`, {
             headers: {
                 "Authorization": "Bearer " + localStorage.getItem("jwt")
             }
         })
             .then(res => res.json())
             .then(result => {
-                setData(result.student)
+                console.log(result)
+                setStudentDetails(result.student)
             })
-    },[])
+    }, [studentId])
+
+    
+
+    const deletePost = studentId => {
+        setLoading(true)
+        fetch(`https://firstclassbrain-server.herokuapp.com/delete-student/${studentId}`, {
+            method: "delete",
+        }).then(res => res.json())
+        .then(result => {
+            console.log(result)
+            toast.dark("Delete successful")
+            history.push('/students')
+        })
+    }
+
+    const [loading, setLoading] = useState(false)
+    
+    let compsClass = ""
+    
+    switch(`${studentDetails.classSelected}`){
+        case `1`: compsClass = "Basic 1";
+        break;
+        case `2`: compsClass = "Basic 2";
+        break;
+        case `3`: compsClass = "Basic 3";
+        break;
+        case `4`: compsClass = "Basic 4";
+        break;
+        case `5`: compsClass = "Basic 5";
+        break;
+        case `6`: compsClass = "JSS 1";
+        break;
+        case `7`: compsClass = "JSS 2";
+        break;
+        case `8`: compsClass = "JSS 3";
+        break;
+        case `9`: compsClass = "SSS 1 (Sci)";
+        break;
+        case `10`: compsClass = "SSS 1 (Comm)";
+        break;
+        case `11`: compsClass = "SSS 1 (Art)";
+        break;
+        case `12`: compsClass = "SSS 2 (Sci)";
+        break;
+        case `13`: compsClass = "SSS 2 (Comm)";
+        break;
+        case `14`: compsClass = "SSS 2 (Art)";
+        break;
+        case `15`: compsClass = "SSS 3 (Sci)";
+        break;
+        case `16`: compsClass = "SSS 3 (Comm)";
+        break;
+        case `17`: compsClass = "SSS 3 (Art)";
+        break;
+        default: compsClass = "Classroom"
+    }
     
     return (
         <div className="dashboard">
             <div className="main-content">
-                <Navigation page="students" image={user} />
+                <Navigation page="students" image={userIcon} />
 
-                <div className="students-data-container">
-                    <div className="table">
-                        <div className="filter-columns">
-                            
-                            <div className="tab">
-                                <select className="sub-title">
-                                    {
-                                        classes.map(item => {
-                                            return(
-                                                <option value={item.class} selected>{item.name}</option>
-                                            )
-                                        })
-                                    }
-                                </select>
-                            </div>
-                            
-                            <div className="tab">
-                                <input type="text" className="search" placeholder="Search..." />
-                            </div>
-                                
-                        </div>
-
-                        {
-                            data.map(item => {
-                                return(
-                                    <div className="columns">
-                                        <div 
-                                            className="image"
-                                            style={{
-                                                backgroundImage: `url(${item.pic})`,
-                                                backgroundSize:`cover`,
-                                                backgroundPosition:`center`
-                                            }}
-                                        ></div>
-            
-                                        <div className="tab">
-                                            <div className="name">
-                                                {item.firstName} {item.lastName}
-                                            </div>
-                                            <button className="desktop-hide">View User</button>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        }
+                <div className="profile-container">
+                    <div className="profile-image"
+                        style={{
+                            backgroundImage: `url(${studentDetails ? studentDetails.pic : "loading"})`,
+                            backgroundSize:`cover`,
+                            backgroundPosition:`center`
+                        }}
+                    ></div>
+                    <div className="name">
+                        {studentDetails ? studentDetails.firstName : "loading"} 
+                        {studentDetails ? studentDetails.lastName : "loading"}
                     </div>
-                    
-                    <div className="profile-container desktop-hide">
-                        <div className="profile-image"></div>
-                        <div className="name">
-                            {firstName} {lastName}
+                    <div className="text">
+                        {studentDetails ? studentDetails.email : "loading"}
+                    </div>
+                    <div className="text">
+                        0{studentDetails ? studentDetails.phone : "loading"}    
+                    </div>
+                    <div className="text">
+                        {compsClass}
+                    </div>
+                    <div className="widgets">
+                        <div><img src={video_call} alt="video call" /></div>
+                        <div><img src={text_message} alt="text message" /></div>
+                        <div>
+                            <a className="links" href={`mailto:${studentDetails ? studentDetails.email : "loading"}`}>
+                                <img src={email_svg} alt="email" />
+                            </a>
                         </div>
-                        <div className="text">{email}</div>
-                        <div className="text">{phone}</div>
-                        <div className="text">{classSelected}</div>
-                        <div className="widgets">
-                            <div><img src={video_call} alt="video call" /></div>
-                            <div><img src={text_message} alt="text message" /></div>
-                            <div><img src={phone_svg} alt="phone" /></div>
-                            <div><img src={email_svg} alt="email" /></div>
-                        </div>
-                        <div className="actions">
-                            <button className="gift">GIFT SUBSCRIPTION</button>
-                            <button className="delete">DELETE ACCOUNT</button>
+                        <div>
+                            <a className="links" href={`tel:0${studentDetails ? studentDetails.phone : "loading"}`}>
+                                <img src={phone_svg} alt="phone" />
+                            </a>
                         </div>
                     </div>
-                    
-                    <div className="message-container desktop-hide">
-                        <div className="void">Select a message thread to read it here</div>
+                    <div className="actions">
+                        <button className="gift">GIFT SUBSCRIPTION</button>
+
+                        <button 
+                            onClick={() => deletePost(`${studentDetails ? studentDetails._id : "loading"}`)}
+                            className={loading ? "delete-disabled mobile" : "delete mobile"}
+                            disabled = {loading ? true : false}
+                        >
+                            {loading ? "LOADING.." : "DELETE THIS COURSE"}
+                        </button>
                     </div>
                 </div>
-                
+        
                 <Footer />
             </div>
             

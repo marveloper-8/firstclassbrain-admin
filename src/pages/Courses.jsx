@@ -1,5 +1,7 @@
-import React, {useState, useEffect} from 'react'
-import {Link} from 'react-router-dom'
+import React, {useState, useEffect, useContext} from 'react'
+import {Link, useHistory} from 'react-router-dom'
+import { toast } from 'react-toastify';
+import {UserContext} from '../App'
 // components
 import Footer from './Footer'
 import Navigation from './Navigation'
@@ -18,6 +20,20 @@ import terms from '../data/terms.json'
 import weeks from '../data/weeks.json'
 
 function Terms() {
+    // authentication
+    const history = useHistory()
+    const {dispatch} = useContext(UserContext)
+    const user = JSON.parse(localStorage.getItem("admin"))
+
+    useEffect(() => {
+      if(user){
+        dispatch({type: "USER", payload: user})
+      } else{
+        history.push('/authentication')
+      }
+    }, [])
+    // authentication end 
+
     useEffect(()=>{
         fetch('https://firstclassbrain-server.herokuapp.com/all-courses', {
             headers: {
@@ -36,11 +52,8 @@ function Terms() {
         }).then(res => res.json())
         .then(result => {
             console.log(result)
-            alert("Delete successfully. Reload page to continue")
-            // const newData = data.filter(item => {
-            //     return item._id !== result._id
-            // })
-            // setData(newData)
+            toast.dark("Delete successful")
+            history.push('/courses')
         })
     }
 
@@ -229,32 +242,43 @@ function Terms() {
                             }
 
                             return(
-                                
-                                <div className="columns">
-                                    <div className="tab">{item.courseTitle}</div>
-                                    <div className="tab">{compsClass}</div>
-                                    <div className="tab">{compsTerm}</div>
-                                    <div className="tab">{compsWeek}</div>
-                                    <div className="tab">{item.subject}</div>
-                                    <div className="tab button">
-                                        <Link className="link" to={'/course-details/' + item._id}>
+                                <>
+                                    <Link className="link mobile" to={'/course-details/' + item._id}>
+                                    <div className="columns">
+                                        <div className="tab">{item.courseTitle}</div>
+                                        <div className="tab">{compsClass}</div>
+                                        <div className="tab">{compsTerm}</div>
+                                        <div className="tab">{compsWeek}</div>
+                                        <div className="tab">{item.subject}</div>
+                                    </div>
+                                    </Link>
+
+                                    
+                                    <div className="columns desktop">
+                                        <div className="tab">{item.courseTitle}</div>
+                                        <div className="tab">{compsClass}</div>
+                                        <div className="tab">{compsTerm}</div>
+                                        <div className="tab">{compsWeek}</div>
+                                        <div className="tab">{item.subject}</div>
+                                        <div className="tab button">
+                                            <Link className="link" to={'/course-details/' + item._id}>
+                                                <img 
+                                                    className="columns-icon mobile-head" 
+                                                    src={viewIcon} 
+                                                    alt="view" 
+                                                />
+                                            </Link>
+                                        </div>
+                                        <div className="tab button">
                                             <img 
                                                 className="columns-icon mobile-head" 
-                                                src={viewIcon} 
-                                                alt="view" 
+                                                src={deleteIcon} 
+                                                alt="delete" 
+                                                onClick={() => deletePost(item._id)}
                                             />
-                                        </Link>
+                                        </div>
                                     </div>
-                                    <div className="tab button">
-                                        <img 
-                                            className="columns-icon mobile-head" 
-                                            src={deleteIcon} 
-                                            alt="delete" 
-                                            onClick={() => deletePost(item._id)}
-                                        />
-                                    </div>
-                                </div>
-                
+                                </>
                             )
                         })
                     }
